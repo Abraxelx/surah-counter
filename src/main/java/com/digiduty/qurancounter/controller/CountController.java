@@ -1,13 +1,14 @@
 package com.digiduty.qurancounter.controller;
 
 import com.digiduty.qurancounter.model.Counts;
+import com.digiduty.qurancounter.model.SurahsEnum;
 import com.digiduty.qurancounter.service.CountService;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.concurrent.ExecutionException;
 
-@RestController
+@Controller
 @RequestMapping("/api")
 public class CountController {
      final CountService countService;
@@ -18,8 +19,8 @@ public class CountController {
     }
 
     @PutMapping("/updateCount")
-    public String updateCount(@RequestBody Counts counts) throws ExecutionException, InterruptedException {
-        return countService.updateCounts(counts);
+    public String updateCount(@RequestParam SurahsEnum surahName, @RequestParam int decreaseVal) throws ExecutionException, InterruptedException {
+        return countService.updateCounts(surahName, decreaseVal);
     }
 
     @GetMapping("/getAll")
