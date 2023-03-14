@@ -23,7 +23,7 @@ public class CountController {
     }
 
     @GetMapping("/getAll")
-    public List<Counts> getAllCounts() throws ExecutionException, InterruptedException {
+    public Counts getAllCounts() throws ExecutionException, InterruptedException {
         return countService.getAllCounts();
     }
 }

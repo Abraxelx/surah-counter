@@ -17,18 +17,17 @@ public class CountService {
     private DocumentSnapshot snapshot;
 
 
-    public List<Counts> getAllCounts() throws ExecutionException, InterruptedException {
+    public Counts getAllCounts() throws ExecutionException, InterruptedException {
         Firestore dbFirestore = FirestoreClient.getFirestore();
         ApiFuture<QuerySnapshot> query = dbFirestore.collection("surah-counter").get();
         QuerySnapshot querySnapshot = query.get();
         List<QueryDocumentSnapshot> documentSnapshotList  = querySnapshot.getDocuments();
-        List<Counts> countsList = new ArrayList<>();
         for (DocumentSnapshot elements : documentSnapshotList) {
             if (elements.exists()) {
-                countsList.add(elements.toObject(Counts.class));
+               return elements.toObject(Counts.class);
             }
         }
-        return countsList;
+        return new Counts();
     }
 
 
