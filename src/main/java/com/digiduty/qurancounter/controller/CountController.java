@@ -1,6 +1,7 @@
 package com.digiduty.qurancounter.controller;
 
 import com.digiduty.qurancounter.model.Counts;
+import com.digiduty.qurancounter.model.MaxCounts;
 import com.digiduty.qurancounter.model.SurahsEnum;
 import com.digiduty.qurancounter.service.CountService;
 import org.springframework.stereotype.Controller;
@@ -8,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.concurrent.ExecutionException;
 
-@Controller
+@RestController
 @RequestMapping("/api")
 public class CountController {
      final CountService countService;
@@ -26,5 +27,10 @@ public class CountController {
     @GetMapping("/getAll")
     public Counts getAllCounts() throws ExecutionException, InterruptedException {
         return countService.getAllCounts();
+    }
+
+    @GetMapping("/getMaxCounts")
+    public MaxCounts getAllMaxCounts() throws ExecutionException, InterruptedException {
+        return countService.getAllMaxCounts();
     }
 }
