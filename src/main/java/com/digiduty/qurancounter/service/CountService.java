@@ -48,10 +48,22 @@ public class CountService {
     public String updateCounts(SurahsEnum surahs, int decreaseValue) throws ExecutionException, InterruptedException {
         Counts currentCountValues = getAllCounts();
         if (surahs.equals(SurahsEnum.CEVSEN)) {
-            currentCountValues.setCevsen(currentCountValues.getCevsen() - decreaseValue);
+            int minus = currentCountValues.getCevsen() - decreaseValue;
+            if(minus < 0 ) {
+            return "Okuduğunuz Cevşen Kalan Cevşenden Çok Olamaz!. Okuyabileceğiniz miktar : " + currentCountValues;
+            }
+            currentCountValues.setCevsen(minus);
         } else if (surahs.equals(SurahsEnum.FETIH)) {
+            int minus = currentCountValues.getFetih() - decreaseValue;
+            if(minus < 0 ) {
+                return "Okuduğunuz Fetih Kalan Fetih'ten Çok Olamaz!. Okuyabileceğiniz miktar : " + currentCountValues;
+            }
             currentCountValues.setFetih(currentCountValues.getFetih() - decreaseValue);
         } else {
+            int minus = currentCountValues.getYasin() - decreaseValue;
+            if(minus < 0 ) {
+                return "Okuduğunuz Yasin Kalan Yasin'ten Çok Olamaz!. Okuyabileceğiniz miktar : " + currentCountValues;
+            }
             currentCountValues.setYasin(currentCountValues.getYasin() - decreaseValue);
         }
 
