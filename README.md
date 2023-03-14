@@ -1,2 +1,2 @@
 # surah-counter
-It's an Quran's surahs counter
+It's a Quran's surahs counter
