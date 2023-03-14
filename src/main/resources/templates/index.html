@@ -1,10 +1,74 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>QURAN COUNTER</title>
+    <title>QURAN QOUNTER</title>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+
+    <div th:replace="~{fragments/header :: css}"/>
+
 </head>
 <body>
-<h1>Selam</h1>
+<h4 class="bg-success" th:if="${message} != null" th:text="*{message}"></h4>
+
+<div th:replace="~{fragments/header :: header}"/>
+
+<link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+
+<link href="../../css/use.fontawesome.all.css" rel="stylesheet" th:href="@{/css/use.fontawesome.all.css}"
+      type="text/css"/>
+
+
+<div class="container">
+
+
+
+
+    <div class="jumbotron">
+        <h1>Test Admin</h1>
+        <p class="lead">Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of
+            classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor
+            at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words.</p>
+        <div sec:authorize="hasRole('ROLE_ADMIN')">
+            <a class="btn btn-large btn-success" th:href="@{/templates/admin}">Admin</a>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="row-fluid">
+        <div class="span4">
+            <h2>Test Title1</h2>
+            <p>is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
+                standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it
+                to make a type specimen book. It has survived not only five centuries </p>
+            <p><a class="btn" href="#">View details »</a></p>
+        </div>
+        <div class="span4">
+            <h2>Test Title2</h2>
+            <p>but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the
+                1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with
+                desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. </p>
+            <p><a class="btn" href="#">View details »</a></p>
+        </div>
+        <div class="span4">
+            <h2>Test Title3</h2>
+            <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical
+                Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at
+                Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words</p>
+            <p><a class="btn" href="#">View details »</a></p>
+        </div>
+    </div>
+
+</div>
+
+<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+<script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+
+
+<div th:replace="~{fragments/footer :: footer}"/>
+
 </body>
 </html>
