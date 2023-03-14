@@ -29,6 +29,8 @@
         <p class="lead">
         <h4>Kalan fetih: <span th:text="${allCounts.fetih}"></span></h4>
 
+        <div class="row">
+
         <form action="#" class="form-horizontal" method="post" role="form"
               th:action="@{/updateSurahCount}" th:object="${surahForm}">
             <input id="surahType" name="surahType" type="hidden" th:value="FETIH"/>
@@ -116,10 +118,11 @@
                 </div>
             </div>
         </form>
-
+        </div>
 
         <hr>
         <h4>Kalan yasin: <span th:text="${allCounts.yasin}"></span></h4>
+        <div class="row">
         <form action="#" class="form-horizontal" method="post" role="form"
               th:action="@{/updateSurahCount}" th:object="${surahForm}">
             <input id="surahType" name="surahType" type="hidden" th:value="YASIN"/>
@@ -203,9 +206,10 @@
                 </div>
             </div>
         </form>
+        </div>
         <hr>
         <h4>Kalan cevsen: <span th:text="${allCounts.cevsen}"></span></h4>
-
+        <div class="row">
         <form action="#" class="form-horizontal" method="post" role="form"
               th:action="@{/updateSurahCount}" th:object="${surahForm}">
             <input id="surahType" name="surahType" type="hidden" th:value="CEVSEN"/>
@@ -290,7 +294,7 @@
                 </div>
             </div>
         </form>
-        <hr>
+        </div>
 
     </div>
 
