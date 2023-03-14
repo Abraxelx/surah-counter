@@ -21,7 +21,7 @@ public class CountService {
     public String updateCounts(Counts counts) throws ExecutionException, InterruptedException {
         Firestore firestore = FirestoreClient.getFirestore();
         ApiFuture<WriteResult> collectionsApiFuture = firestore.collection("surah-counter").document("counts").set(counts);
-        return "Vecize Başarıyla Eklendi. " + collectionsApiFuture.get().getUpdateTime();
+        return "Updated Successfully. " + collectionsApiFuture.get().getUpdateTime();
     }
 
 }
