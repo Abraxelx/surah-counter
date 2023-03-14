@@ -25,40 +25,68 @@
 
 
     <div class="jumbotron">
-        <h1>Test Admin</h1>
-        <p class="lead">Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of
-            classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor
-            at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words.</p>
-        <div sec:authorize="hasRole('ROLE_ADMIN')">
-            <a class="btn btn-large btn-success" th:href="@{/templates/admin}">Admin</a>
-        </div>
+
+        <p class="lead">
+        <h4>Kalan fetih: <span th:text="${allCounts.fetih}"></span></h4>
+
+        <form action="#" class="form-horizontal" method="post" role="form"
+              th:action="@{/updateSurahCount}" th:object="${surahForm}">
+            <input id="surahType" name="surahType" type="hidden" th:value="FETIH"/>
+            <input id="count" name="count"  type="hidden" th:value="1"/>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button class="btn btn-success" id="btn-edit" th:disabled="${allCounts.fetih == 0}" type="submit">1 Fetih Suresi Okudum
+                    </button>
+                </div>
+            </div>
+        </form>
+
+        <form action="#" class="form-horizontal" method="post" role="form"
+              th:action="@{/updateSurahCount}" th:object="${surahForm}">
+            <input id="surahType" name="surahType" type="hidden" th:value="FETIH"/>
+            <input id="count" name="count"  type="hidden" th:value="5"/>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button class="btn btn-success" id="btn-edit" th:disabled="${allCounts.fetih == 0}" type="submit">5 Fetih Suresi Okudum
+                    </button>
+                </div>
+            </div>
+        </form>
+
+        <hr>
+        <h4>Kalan yasin: <span th:text="${allCounts.yasin}"></span></h4>
+        <form action="#" class="form-horizontal" method="post" role="form"
+              th:action="@{/updateSurahCount}" th:object="${surahForm}">
+            <input id="surahType" name="surahType" type="hidden" th:value="YASIN"/>
+            <input id="count" name="count"  type="hidden" th:value="5"/>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button class="btn btn-primary" id="btn-edit" th:disabled="${allCounts.yasin == 0}" type="submit">1 Yasin Suresi Okudum
+                    </button>
+                </div>
+            </div>
+        </form>
+        <hr>
+        <h4>Kalan cevsen: <span th:text="${allCounts.cevsen}"></span></h4>
+
+        <form action="#" class="form-horizontal" method="post" role="form"
+              th:action="@{/updateSurahCount}" th:object="${surahForm}">
+            <input id="surahType" name="surahType" type="hidden" th:value="CEVSEN"/>
+            <input id="count" name="count"  type="hidden" th:value="1"/>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button class="btn btn-warning" id="btn-edit" th:disabled="${allCounts.cevsen == 0}" type="submit">1 Cevsen Suresi Okudum
+                    </button>
+                </div>
+            </div>
+        </form>
+        <hr>
+
     </div>
 
-    <hr>
 
-    <div class="row-fluid">
-        <div class="span4">
-            <h2>Test Title1</h2>
-            <p>is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
-                standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it
-                to make a type specimen book. It has survived not only five centuries </p>
-            <p><a class="btn" href="#">View details »</a></p>
-        </div>
-        <div class="span4">
-            <h2>Test Title2</h2>
-            <p>but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the
-                1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with
-                desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. </p>
-            <p><a class="btn" href="#">View details »</a></p>
-        </div>
-        <div class="span4">
-            <h2>Test Title3</h2>
-            <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical
-                Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at
-                Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words</p>
-            <p><a class="btn" href="#">View details »</a></p>
-        </div>
-    </div>
+
+
 
 </div>
 
