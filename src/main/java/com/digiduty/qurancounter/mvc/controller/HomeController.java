@@ -32,6 +32,8 @@ public class HomeController {
             modelMap.addAttribute("allMaxCounts",countService.getAllMaxCounts());
             //Now
             modelMap.addAttribute("allReverseCounts",countService.getAllReverseCounts());
+            modelMap.addAttribute("progressBarPerc",countService.progressBarValueCalculator());
+
         } catch (ExecutionException | InterruptedException e) {
             e.printStackTrace();
         }

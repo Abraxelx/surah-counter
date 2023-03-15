@@ -23,7 +23,8 @@
 <h4>Kalan cevsen: <span th:text="${allCounts.cevsen}"></span></h4>
 <hr>
 <div class="progress">
-    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" th:aria-valuenow="${allReverseCounts.reverseCevsen}" aria-valuemin="0" th:aria-valuemax="${allMaxCounts.cevsenMaxCount}" style="width: 75%"></div>
+    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" th:aria-valuenow="${allReverseCounts.reverseCevsen}" aria-valuemin="0" th:aria-valuemax="${allMaxCounts.cevsenMaxCount}"
+         th:style="'width:' + ${progressBarPerc.cevsenProgress} + '%'"></div>
 </div>
 <hr>
 <div class="row">
@@ -117,7 +118,7 @@
         <h4>Kalan fetih: <span th:text="${allCounts.fetih}"></span></h4>
         <hr>
         <div class="progress">
-        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" th:aria-valuenow="${allReverseCounts.reverseFetih}" aria-valuemin="0" th:aria-valuemax="${allMaxCounts.fetihMaxCount}" style="width: 75%"></div>
+        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" th:aria-valuenow="${allReverseCounts.reverseFetih}" aria-valuemin="0" th:aria-valuemax="${allMaxCounts.fetihMaxCount}" th:style="'width:' + ${progressBarPerc.fetihProgress} + '%'"></div>
         </div>
         <hr>
         <div class="row">
@@ -214,7 +215,7 @@
         <h4>Kalan yasin: <span th:text="${allCounts.yasin}"></span></h4>
         <hr>
         <div class="progress">
-            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" th:aria-valuenow="${allReverseCounts.reverseYasin}" aria-valuemin="0" th:aria-valuemax="${allMaxCounts.yasinMaxCount}" style="width: 75%"></div>
+            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" th:aria-valuenow="${allReverseCounts.reverseYasin}" aria-valuemin="0" th:aria-valuemax="${allMaxCounts.yasinMaxCount}" th:style="'width:' + ${progressBarPerc.yasinProgress} + '%'"></div>
         </div>
         <hr>
         <div class="row">
