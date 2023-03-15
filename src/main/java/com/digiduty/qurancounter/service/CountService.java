@@ -1,5 +1,6 @@
 package com.digiduty.qurancounter.service;
 
+import com.digiduty.qurancounter.constants.Constants;
 import com.digiduty.qurancounter.model.*;
 import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.*;
@@ -11,14 +12,11 @@ import java.util.concurrent.ExecutionException;
 
 @Service
 public class CountService {
-    private DocumentReference documentReference;
-    private ApiFuture<DocumentSnapshot> apiFuture;
-    private DocumentSnapshot snapshot;
 
 
     public Counts getAllCounts() throws ExecutionException, InterruptedException {
         Firestore dbFirestore = FirestoreClient.getFirestore();
-        ApiFuture<QuerySnapshot> query = dbFirestore.collection("surah-counter").get();
+        ApiFuture<QuerySnapshot> query = dbFirestore.collection(Constants.SURAH_COUNTER_DB).get();
         QuerySnapshot querySnapshot = query.get();
         List<QueryDocumentSnapshot> documentSnapshotList = querySnapshot.getDocuments();
         for (DocumentSnapshot elements : documentSnapshotList) {
@@ -31,7 +29,7 @@ public class CountService {
 
     public MaxCounts getAllMaxCounts() throws ExecutionException, InterruptedException {
         Firestore dbFirestore = FirestoreClient.getFirestore();
-        QuerySnapshot querySnapshot = dbFirestore.collection("max-counts").get().get();
+        QuerySnapshot querySnapshot = dbFirestore.collection(Constants.MAX_COUNTS_DB).get().get();
         List<QueryDocumentSnapshot> documentSnapshotList = querySnapshot.getDocuments();
         for (DocumentSnapshot elements : documentSnapshotList) {
             if (elements.exists()) {
@@ -43,7 +41,7 @@ public class CountService {
 
     public ReverseCounter getAllReverseCounts() throws ExecutionException, InterruptedException {
         Firestore dbFirestore = FirestoreClient.getFirestore();
-        ApiFuture<QuerySnapshot> query = dbFirestore.collection("reverse-counter").get();
+        ApiFuture<QuerySnapshot> query = dbFirestore.collection(Constants.REVERSE_COUNTER_DB).get();
         QuerySnapshot querySnapshot = query.get();
         List<QueryDocumentSnapshot> documentSnapshotList = querySnapshot.getDocuments();
         for (DocumentSnapshot elements : documentSnapshotList) {
@@ -55,27 +53,27 @@ public class CountService {
     }
 
 
-    public String updateCounts(SurahsEnum surahs, int decreaseValue) throws ExecutionException, InterruptedException {
+    public String updateCounts(SurahsEnum surahsEnum, int decreaseValue) throws ExecutionException, InterruptedException {
         Counts currentCountValues = getAllCounts();
         ReverseCounter reverseCounter = getAllReverseCounts();
-        if (surahs.equals(SurahsEnum.CEVSEN)) {
+        if (surahsEnum.equals(SurahsEnum.CEVSEN)) {
             int minus = currentCountValues.getCevsen() - decreaseValue;
-            if(minus < 0 ) {
-            return "Okuduğunuz Cevşen Kalan Cevşenden Çok Olamaz!. Okuyabileceğiniz miktar : " + currentCountValues;
+            if (minus < 0) {
+                return Constants.CEVSEN_OVERFLOW_MESSAGE + currentCountValues;
             }
             currentCountValues.setCevsen(minus);
             reverseCounter.setReverseCevsen(reverseCounter.getReverseCevsen() + decreaseValue);
-        } else if (surahs.equals(SurahsEnum.FETIH)) {
+        } else if (surahsEnum.equals(SurahsEnum.FETIH)) {
             int minus = currentCountValues.getFetih() - decreaseValue;
-            if(minus < 0 ) {
-                return "Okuduğunuz Fetih Kalan Fetih'ten Çok Olamaz!. Okuyabileceğiniz miktar : " + currentCountValues;
+            if (minus < 0) {
+                return Constants.FETIH_OVERFLOW_MESSAGE + currentCountValues;
             }
             currentCountValues.setFetih(currentCountValues.getFetih() - decreaseValue);
             reverseCounter.setReverseFetih(reverseCounter.getReverseFetih() + decreaseValue);
         } else {
             int minus = currentCountValues.getYasin() - decreaseValue;
-            if(minus < 0 ) {
-                return "Okuduğunuz Yasin Kalan Yasin'ten Çok Olamaz!. Okuyabileceğiniz miktar : " + currentCountValues;
+            if (minus < 0) {
+                return Constants.YASIN_OVERFLOW_MESSAGE + currentCountValues;
             }
             currentCountValues.setYasin(currentCountValues.getYasin() - decreaseValue);
             reverseCounter.setReverseYasin(reverseCounter.getReverseYasin() + decreaseValue);
@@ -83,11 +81,11 @@ public class CountService {
 
         Firestore firestore = FirestoreClient.getFirestore();
         ApiFuture<WriteResult> collectionsApiFuture = firestore
-                .collection("surah-counter")
+                .collection(Constants.SURAH_COUNTER_DB)
                 .document("counts")
                 .set(currentCountValues);
-        firestore.collection("reverse-counter")
-                .document("reverse-counter")
+        firestore.collection(Constants.REVERSE_COUNTER_DB)
+                .document(Constants.REVERSE_COUNTER_DB)
                 .set(reverseCounter);
         return "Updated Successfully. " + collectionsApiFuture.get().getUpdateTime();
     }
@@ -98,9 +96,9 @@ public class CountService {
 
         Progress progress = new Progress();
 
-        progress.setYasinProgress((Float.valueOf(currentCounts.getReverseYasin())/Float.valueOf(maxCounts.getYasinMaxCount()))*100f);
-        progress.setFetihProgress((Float.valueOf(currentCounts.getReverseFetih())/Float.valueOf(maxCounts.getFetihMaxCount()))*100f);
-        progress.setCevsenProgress((Float.valueOf(currentCounts.getReverseCevsen())/Float.valueOf(maxCounts.getCevsenMaxCount()))*100f);
+        progress.setYasinProgress(((float) currentCounts.getReverseYasin() / (float) maxCounts.getYasinMaxCount()) * 100f);
+        progress.setFetihProgress(((float) currentCounts.getReverseFetih() / (float) maxCounts.getFetihMaxCount()) * 100f);
+        progress.setCevsenProgress(((float) currentCounts.getReverseCevsen() / (float) maxCounts.getCevsenMaxCount()) * 100f);
         return progress;
     }
 
