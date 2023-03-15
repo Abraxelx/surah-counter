@@ -15,41 +15,15 @@ public class CountService {
 
 
     public Counts getAllCounts() throws ExecutionException, InterruptedException {
-        Firestore dbFirestore = FirestoreClient.getFirestore();
-        ApiFuture<QuerySnapshot> query = dbFirestore.collection(Constants.SURAH_COUNTER_DB).get();
-        QuerySnapshot querySnapshot = query.get();
-        List<QueryDocumentSnapshot> documentSnapshotList = querySnapshot.getDocuments();
-        for (DocumentSnapshot elements : documentSnapshotList) {
-            if (elements.exists()) {
-                return elements.toObject(Counts.class);
-            }
-        }
-        return new Counts();
+        return fillModel(Constants.SURAH_COUNTER_DB, Counts.class);
     }
 
     public MaxCounts getAllMaxCounts() throws ExecutionException, InterruptedException {
-        Firestore dbFirestore = FirestoreClient.getFirestore();
-        QuerySnapshot querySnapshot = dbFirestore.collection(Constants.MAX_COUNTS_DB).get().get();
-        List<QueryDocumentSnapshot> documentSnapshotList = querySnapshot.getDocuments();
-        for (DocumentSnapshot elements : documentSnapshotList) {
-            if (elements.exists()) {
-                return elements.toObject(MaxCounts.class);
-            }
-        }
-        return new MaxCounts();
+        return fillModel(Constants.MAX_COUNTS_DB, MaxCounts.class);
     }
 
     public ReverseCounter getAllReverseCounts() throws ExecutionException, InterruptedException {
-        Firestore dbFirestore = FirestoreClient.getFirestore();
-        ApiFuture<QuerySnapshot> query = dbFirestore.collection(Constants.REVERSE_COUNTER_DB).get();
-        QuerySnapshot querySnapshot = query.get();
-        List<QueryDocumentSnapshot> documentSnapshotList = querySnapshot.getDocuments();
-        for (DocumentSnapshot elements : documentSnapshotList) {
-            if (elements.exists()) {
-                return elements.toObject(ReverseCounter.class);
-            }
-        }
-        return new ReverseCounter();
+        return fillModel(Constants.REVERSE_COUNTER_DB, ReverseCounter.class);
     }
 
 
@@ -82,7 +56,7 @@ public class CountService {
         Firestore firestore = FirestoreClient.getFirestore();
         ApiFuture<WriteResult> collectionsApiFuture = firestore
                 .collection(Constants.SURAH_COUNTER_DB)
-                .document("counts")
+                .document(Constants.COUNTS_TABLE_NAME)
                 .set(currentCountValues);
         firestore.collection(Constants.REVERSE_COUNTER_DB)
                 .document(Constants.REVERSE_COUNTER_DB)
@@ -102,5 +76,17 @@ public class CountService {
         return progress;
     }
 
+    public <T> T fillModel(String collectionName, Class<T> clazz) throws ExecutionException, InterruptedException {
+        Firestore dbFirestore = FirestoreClient.getFirestore();
+        ApiFuture<QuerySnapshot> query = dbFirestore.collection(collectionName).get();
+        QuerySnapshot querySnapshot = query.get();
+        List<QueryDocumentSnapshot> documentSnapshotList = querySnapshot.getDocuments();
+        for (DocumentSnapshot elements : documentSnapshotList) {
+            if (elements.exists()) {
+                return elements.toObject(clazz);
+            }
+        }
+        return null;
+    }
 
 }
