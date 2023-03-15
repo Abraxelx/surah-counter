@@ -86,9 +86,7 @@ public class CountService {
                 .collection("surah-counter")
                 .document("counts")
                 .set(currentCountValues);
-
-        ApiFuture<WriteResult> reverseApiFuture = firestore
-                .collection("reverse-counter")
+        firestore.collection("reverse-counter")
                 .document("reverse-counter")
                 .set(reverseCounter);
         return "Updated Successfully. " + collectionsApiFuture.get().getUpdateTime();
@@ -96,13 +94,13 @@ public class CountService {
 
     public Progress progressBarValueCalculator() throws ExecutionException, InterruptedException {
         MaxCounts maxCounts = getAllMaxCounts();
-        Counts currentCounts = getAllCounts();
+        ReverseCounter currentCounts = getAllReverseCounts();
 
         Progress progress = new Progress();
 
-        progress.setYasinProgress((100 * currentCounts.getYasin()) / maxCounts.getYasinMaxCount());
-        progress.setFetihProgress((100 * currentCounts.getFetih()) / maxCounts.getFetihMaxCount());
-        progress.setCevsenProgress((100 * currentCounts.getCevsen()) / maxCounts.getCevsenMaxCount());
+        progress.setYasinProgress((Float.valueOf(currentCounts.getReverseYasin())/Float.valueOf(maxCounts.getYasinMaxCount()))*100f);
+        progress.setFetihProgress((Float.valueOf(currentCounts.getReverseFetih())/Float.valueOf(maxCounts.getFetihMaxCount()))*100f);
+        progress.setCevsenProgress((Float.valueOf(currentCounts.getReverseCevsen())/Float.valueOf(maxCounts.getCevsenMaxCount()))*100f);
         return progress;
     }
 
