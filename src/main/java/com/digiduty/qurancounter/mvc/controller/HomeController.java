@@ -27,6 +27,11 @@ public class HomeController {
         try {
             modelMap.addAttribute("surahForm",new SurahForm());
             modelMap.addAttribute("allCounts",countService.getAllCounts());
+            modelMap.addAttribute("allCounts",countService.getAllCounts());
+            //Max
+            modelMap.addAttribute("allMaxCounts",countService.getAllMaxCounts());
+            //Now
+            modelMap.addAttribute("allReverseCounts",countService.getAllReverseCounts());
         } catch (ExecutionException | InterruptedException e) {
             e.printStackTrace();
         }
@@ -39,8 +44,6 @@ public class HomeController {
 
         try {
             countService.updateCounts(SurahsEnum.of(surahForm.getSurahType()), surahForm.getCount());
-            modelMap.addAttribute("surahForm",new SurahForm());
-            modelMap.addAttribute("allCounts",countService.getAllCounts());
 
         } catch (Exception e) {
             e.printStackTrace();
