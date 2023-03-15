@@ -24,6 +24,7 @@
 <h4 class="text-center">Kalan cevsen: <span th:text="${allCounts.cevsen}"></span></h4>
 <hr>
 <div class="col-sm-10">
+    <span th:text="${#numbers.formatDecimal(progressBarPerc.cevsenProgress, 0, 2)+ '%'}"></span>
 <div class="progress">
     <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" th:aria-valuenow="${allReverseCounts.reverseCevsen}" aria-valuemin="0" th:aria-valuemax="${allMaxCounts.cevsenMaxCount}"
          th:style="'width:' + ${progressBarPerc.cevsenProgress} + '%'"></div>
@@ -120,6 +121,7 @@
         <h4 class="text-center">Kalan fetih: <span th:text="${allCounts.fetih}"></span></h4>
         <hr>
         <div class="col-sm-10">
+            <span th:text="${#numbers.formatDecimal(progressBarPerc.fetihProgress, 0, 2)+ '%'}"></span>
         <div class="progress">
         <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" th:aria-valuenow="${allReverseCounts.reverseFetih}" aria-valuemin="0" th:aria-valuemax="${allMaxCounts.fetihMaxCount}" th:style="'width:' + ${progressBarPerc.fetihProgress} + '%'"></div>
         </div>
@@ -219,6 +221,7 @@
         <h4 class="text-center">Kalan yasin: <span th:text="${allCounts.yasin}"></span></h4>
         <hr>
         <div class="col-sm-10">
+            <span th:text="${#numbers.formatDecimal(progressBarPerc.yasinProgress, 0, 2)+ '%'}"></span>
         <div class="progress">
             <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" th:aria-valuenow="${allReverseCounts.reverseYasin}" aria-valuemin="0" th:aria-valuemax="${allMaxCounts.yasinMaxCount}" th:style="'width:' + ${progressBarPerc.yasinProgress} + '%'"></div>
         </div>
