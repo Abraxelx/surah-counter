@@ -26,6 +26,10 @@ public class CountService {
         return fillModel(Constants.REVERSE_COUNTER_DB, ReverseCounter.class);
     }
 
+    public DailyHadis getDailyHadis() throws ExecutionException, InterruptedException {
+        return fillModel(Constants.DAILY_HADIS_DB, DailyHadis.class);
+    }
+
 
     public String updateCounts(SurahsEnum surahsEnum, int decreaseValue) throws ExecutionException, InterruptedException {
         Counts currentCountValues = getAllCounts();
