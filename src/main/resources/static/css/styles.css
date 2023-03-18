@@ -32,3 +32,10 @@ h2 {
     color:#2A2B2DFF;
     background-color: #2DA8D8FF;
 }
+a, a:visited, a:hover, a:active {
+    color: inherit;
+}
+
+.special-link, .special-link:visited, .special-link:hover, .special-link:active {
+    color: inherit;
+}
