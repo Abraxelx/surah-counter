@@ -1,29 +1,27 @@
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
-      xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
 <head>
+    <title></title>
+    <meta charset="UTF-8">
+
 </head>
 <body>
+
 <div th:fragment="footer">
-
-    </br>
     <hr/>
-    <div class="container-fluid">
 
-        <footer>
-
-            <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
-            <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
-            <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
-            <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
-
-
-            <!-- this is footer -->
-            &copy;2023 QURAN QOUNTER Her Hakkı Saklıdır
-
-
-        </footer>
-    </div>
+    <footer class="my-5 pt-5 text-center">
+        <!-- this is footer -->
+        <h2 style="color:#16151a; background-color:#D9514EFF"> DigiDuty </h2>
+        <hr>
+        <div class="justify-content-md-center">
+            <p class="mb-1">Copyright <i class="fa fa-copyright"></i> 2023 "Quran Counter" Her Hakkı Mahfuzdur.</p>
+            <hr>
+            <i style="font-size: 30px" class="fa-solid fa-square-envelope fa-lg"></i>
+            <hr>
+        </div>
+    </footer>
 </div>
 </body>
 </html>
