@@ -1,8 +1,9 @@
+@import url('https://fonts.googleapis.com/css?family=Oswald&display=swap');
+
+
+
 body{
-    background: #43cea2;
-    background: -webkit-linear-gradient(to right, #185a9d, #43cea2);
-    background: linear-gradient(to right, #185a9d, #43cea2);
-    color: #fff;
+    background: #eeeeee;
     text-align: center;
 }
 
@@ -13,6 +14,11 @@ body{
     right: 0;
     top: 35%;
     bottom: 0;
+}
+.daily-hadis {
+    color: #16151a;
+    font-family: "Oswald", sans-serif;
+    font-size: xx-large;
 }
 
 h1 {
@@ -25,6 +31,7 @@ h2 {
     font-size: 34px;
     margin-top: 10px;
     margin-bottom: 10px;
+    color: #16151a;
 }
 
 .card{
@@ -32,10 +39,32 @@ h2 {
     color:#2A2B2DFF;
     background-color: #2DA8D8FF;
 }
-a, a:visited, a:hover, a:active {
-    color: inherit;
+
+
+.mb-4{
+    color: #16151a;
 }
 
-.special-link, .special-link:visited, .special-link:hover, .special-link:active {
-    color: inherit;
+hr {
+    color: #16151a;
+}
+
+.text-center {
+    color: #16151a;
+}
+
+.btn-toolbar {
+    justify-content: center;
+    display: flex;
+}
+
+
+
+.progress{
+    height: 19px;
+    background-color: #eeeeee !important;
+    /* Changes below */
+    -webkit-box-shadow: inset 0 0 0 1px #337AB7 !important;
+    -moz-box-shadow: inset 0 0 0 1px #337AB7 !important;
+    box-shadow: inset 0 0 0 1px #337AB7 !important;
 }
