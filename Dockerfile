@@ -2,5 +2,5 @@ FROM openjdk:17
 EXPOSE 9090
 ARG JAR_FILE=target/quran-counter.jar
 ADD ${JAR_FILE} quran.jar
-ADD /etc/serviceaccount/serviceAccount.json .
+ADD serviceAccount.json .
 ENTRYPOINT ["java", "-jar", "/quran.jar"]
