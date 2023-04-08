@@ -11,6 +11,25 @@
 </head>
 <body>
 
+<style>
+    .loading-spinner {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(238, 238, 238, 0.5);
+        z-index: 9999;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .loading-spinner i {
+        font-size: 100px;
+    }
+</style>
+
 <div class="container">
 
     <hr>
@@ -441,7 +460,7 @@
 
     function showLoadingSpinner(count, type) {
         // Spinner HTML kodunu oluşturun
-        var spinnerHtml = '<div class="loading-spinner"><i class="fa-solid fa-spinner fa-spin-pulse fa-lg" style="color: #0d6efd;"></i></div>';
+        var spinnerHtml = '<div class="loading-spinner"><i class="fa-solid fa-spinner fa-spin-pulse fa-lg" style="color: #0d6efd; text-align: center"></i></div>';
 
         // Spinner'ı formun içine ekleyin
         $('#updateSurahCountForm1').append(spinnerHtml);
