@@ -1,6 +1,10 @@
 package com.digiduty.qurancounter.constants;
 
 public class Constants {
+    private Constants() {
+        throw new UnsupportedOperationException("This is a constants class and cannot be instantiated");
+    }
+
     public static final String REVERSE_COUNTER_DB = "reverse-counter";
     public static final String SURAH_COUNTER_DB = "surah-counter";
     public static final String DAILY_HADIS_DB = "daily-hadis";

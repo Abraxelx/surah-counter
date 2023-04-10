@@ -54,8 +54,8 @@
         <div class="progress-bar   progress-bar-animated bg-success" role="progressbar"
              th:aria-valuenow="${allReverseCounts.reverseYasin}" aria-valuemin="0"
              th:aria-valuemax="${allMaxCounts.yasinMaxCount}"
-             th:style="'width:' + ${progressBarPerc.yasinProgress} + '%'">
-            <span th:text="${#numbers.formatDecimal(progressBarPerc.yasinProgress, 0, 2)+ '%'}"></span>
+             th:style="'width:' + ${progressBarPercentage.yasinProgress} + '%'">
+            <span th:text="${#numbers.formatDecimal(progressBarPercentage.yasinProgress, 0, 2)+ '%'}"></span>
         </div>
     </div>
     <br>
@@ -184,8 +184,8 @@
              th:aria-valuenow="${allReverseCounts.reverseFetih}"
              aria-valuemin="0"
              th:aria-valuemax="${allMaxCounts.fetihMaxCount}"
-             th:style="'width:' + ${progressBarPerc.fetihProgress} + '%'">
-            <span th:text="${#numbers.formatDecimal(progressBarPerc.fetihProgress, 0, 2)+ '%'}"></span>
+             th:style="'width:' + ${progressBarPercentage.fetihProgress} + '%'">
+            <span th:text="${#numbers.formatDecimal(progressBarPercentage.fetihProgress, 0, 2)+ '%'}"></span>
         </div>
     </div>
     <br>
@@ -311,8 +311,8 @@
              th:aria-valuenow="${allReverseCounts.reverseCevsen}"
              aria-valuemin="0"
              th:aria-valuemax="${allMaxCounts.cevsenMaxCount}"
-             th:style="'width:' + ${progressBarPerc.cevsenProgress} + '%'">
-            <span th:text="${#numbers.formatDecimal(progressBarPerc.cevsenProgress, 0, 2)+ '%'}"></span>
+             th:style="'width:' + ${progressBarPercentage.cevsenProgress} + '%'">
+            <span th:text="${#numbers.formatDecimal(progressBarPercentage.cevsenProgress, 0, 2)+ '%'}"></span>
         </div>
     </div>
     <br>

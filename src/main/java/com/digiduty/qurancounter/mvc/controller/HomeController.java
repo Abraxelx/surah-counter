@@ -3,6 +3,7 @@ package com.digiduty.qurancounter.mvc.controller;
 import com.digiduty.qurancounter.form.SurahForm;
 import com.digiduty.qurancounter.model.SurahsEnum;
 import com.digiduty.qurancounter.service.CountService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,12 +11,16 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.concurrent.ExecutionException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 @Controller
 public class HomeController {
+    private static final Logger logger = Logger.getLogger(HomeController.class.getName());
 
-    final CountService countService;
+    private final CountService countService;
 
+    @Autowired
     public HomeController(CountService countService) {
         this.countService = countService;
     }
@@ -25,33 +30,35 @@ public class HomeController {
     public String home1(ModelMap modelMap) {
 
         try {
-            modelMap.addAttribute("surahForm",new SurahForm());
-            modelMap.addAttribute("allCounts",countService.getAllCounts());
-            modelMap.addAttribute("allCounts",countService.getAllCounts());
+            modelMap.addAttribute("surahForm", new SurahForm());
+            modelMap.addAttribute("allCounts", countService.getAllCounts());
+            modelMap.addAttribute("allCounts", countService.getAllCounts());
             //Max
-            modelMap.addAttribute("allMaxCounts",countService.getAllMaxCounts());
+            modelMap.addAttribute("allMaxCounts", countService.getAllMaxCounts());
             //Now
-            modelMap.addAttribute("allReverseCounts",countService.getAllReverseCounts());
-            modelMap.addAttribute("progressBarPerc",countService.progressBarValueCalculator());
+            modelMap.addAttribute("allReverseCounts", countService.getAllReverseCounts());
+            modelMap.addAttribute("progressBarPercentage", countService.progressBarValueCalculator());
 
-            modelMap.addAttribute("dailyHadis",countService.getDailyHadis());
+            modelMap.addAttribute("dailyHadis", countService.getDailyHadis());
 
 
         } catch (ExecutionException | InterruptedException e) {
-            e.printStackTrace();
+            logger.log(Level.WARNING, "Interrupted", e);
+            Thread.currentThread().interrupt();
         }
 
         return "index";
     }
 
     @PostMapping("/updateSurahCount")
-    public String updateSurahs(@ModelAttribute(value = "surahForm") SurahForm surahForm, ModelMap modelMap) {
+    public String updateSurahs(@ModelAttribute(value = "surahForm") SurahForm surahForm) {
 
         try {
             countService.updateCounts(SurahsEnum.of(surahForm.getSurahType()), surahForm.getCount());
 
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.log(Level.WARNING, "Updating Interrupted", e);
+            Thread.currentThread().interrupt();
         }
 
         return "redirect:/";

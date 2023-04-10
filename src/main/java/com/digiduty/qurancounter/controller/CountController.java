@@ -4,7 +4,7 @@ import com.digiduty.qurancounter.model.Counts;
 import com.digiduty.qurancounter.model.MaxCounts;
 import com.digiduty.qurancounter.model.SurahsEnum;
 import com.digiduty.qurancounter.service.CountService;
-import org.springframework.stereotype.Controller;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.concurrent.ExecutionException;
@@ -12,9 +12,9 @@ import java.util.concurrent.ExecutionException;
 @RestController
 @RequestMapping("/api")
 public class CountController {
-     final CountService countService;
+    private final CountService countService;
 
-
+    @Autowired
     public CountController(CountService countService) {
         this.countService = countService;
     }

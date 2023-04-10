@@ -1,5 +1,6 @@
 package com.digiduty.qurancounter.model;
 
+import com.digiduty.qurancounter.exception.UnknownSurahException;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 public enum SurahsEnum {
@@ -7,7 +8,7 @@ public enum SurahsEnum {
     YASIN("YASIN"),
     CEVSEN("CEVSEN");
 
-    private String surahNames;
+    private final String surahNames;
     SurahsEnum(String surahNames) {
         this.surahNames = surahNames;
     }
@@ -17,7 +18,7 @@ public enum SurahsEnum {
         return surahNames;
     }
 
-    public static SurahsEnum of(String value) throws Exception {
+    public static SurahsEnum of(String value) throws UnknownSurahException {
         if (value == null) {
             return null;
         }
@@ -27,6 +28,6 @@ public enum SurahsEnum {
                 return item;
             }
         }
-        throw new Exception("GenderEnum: unknown value: " + value);
+        throw new UnknownSurahException("Surah Not Found :" + value);
     }
 }
