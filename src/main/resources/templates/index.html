@@ -484,7 +484,6 @@
                     // Spinner'ı formun içine ekleyin
                     $('#updateSurahCountForm1').append(spinnerHtml);
                     localStorage.setItem("lasActiveSurah", count + "-" + type);
-                    console.log(form);
                     form.submit();
                 } else if (result === false) {
                     console.log('This was logged in the callback: ' + result);
