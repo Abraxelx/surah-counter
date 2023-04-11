@@ -68,8 +68,8 @@
                 <input id="count" name="count" type="hidden" th:value="1"/>
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
-                        <button class="btn btn-primary" onclick="showLoadingSpinner(1,'yasin')"
-                                th:disabled="${allCounts.yasin == 0}" type="submit">
+                        <button class="btn btn-primary" onclick="showLoadingSpinner(this,event,1,'yasin')"
+                                th:disabled="${allCounts.yasin == 0}" >
                             1 &nbsp;Yasin&nbsp;&nbsp;
                             Okudum
                         </button>
@@ -83,8 +83,8 @@
                 <input id="count" name="count" type="hidden" th:value="5"/>
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
-                        <button class="btn btn-primary " onclick="showLoadingSpinner(5,'yasin')"
-                                th:disabled="${allCounts.yasin == 0}" type="submit">
+                        <button class="btn btn-primary " onclick="showLoadingSpinner(this,event,5,'yasin')"
+                                th:disabled="${allCounts.yasin == 0}" >
                             5 &nbsp;Yasin&nbsp;&nbsp;
                             Okudum
                         </button>
@@ -98,8 +98,8 @@
                 <input id="count" name="count" type="hidden" th:value="10"/>
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
-                        <button class="btn btn-primary " onclick="showLoadingSpinner(10,'yasin')"
-                                th:disabled="${allCounts.yasin == 0}" type="submit">
+                        <button class="btn btn-primary " onclick="showLoadingSpinner(this,event,10,'yasin')"
+                                th:disabled="${allCounts.yasin == 0}" >
                             10&nbsp;
                             Yasin
                             Okudum
@@ -114,8 +114,8 @@
                 <input id="count" name="count" type="hidden" th:value="20"/>
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
-                        <button class="btn btn-primary " onclick="showLoadingSpinner(20,'yasin')"
-                                th:disabled="${allCounts.yasin == 0}" type="submit">
+                        <button class="btn btn-primary " onclick="showLoadingSpinner(this,event,20,'yasin')"
+                                th:disabled="${allCounts.yasin == 0}" >
                             20&nbsp; Yasin Okudum
                         </button>
                     </div>
@@ -128,8 +128,8 @@
                 <input id="count" name="count" type="hidden" th:value="50"/>
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
-                        <button class="btn btn-primary " onclick="showLoadingSpinner(50,'yasin')"
-                                th:disabled="${allCounts.yasin == 0}" type="submit">
+                        <button class="btn btn-primary " onclick="showLoadingSpinner(this,event,50,'yasin')"
+                                th:disabled="${allCounts.yasin == 0}" >
                             50&nbsp;
                             Yasin
                             Okudum
@@ -144,8 +144,8 @@
                 <input id="count" name="count" type="hidden" th:value="100"/>
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
-                        <button class="btn btn-primary " onclick="showLoadingSpinner(100,'yasin')"
-                                th:disabled="${allCounts.yasin == 0}" type="submit">
+                        <button class="btn btn-primary " onclick="showLoadingSpinner(this,event,100,'yasin')"
+                                th:disabled="${allCounts.yasin == 0}" >
                             100
                             Yasin
                             Okudum
@@ -160,8 +160,8 @@
                 <input id="count" name="count" type="hidden" th:value="200"/>
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
-                        <button class="btn btn-primary " onclick="showLoadingSpinner(200,'yasin')"
-                                th:disabled="${allCounts.yasin == 0}" type="submit">
+                        <button class="btn btn-primary " onclick="showLoadingSpinner(this,event,200,'yasin')"
+                                th:disabled="${allCounts.yasin == 0}" >
                             200
                             Yasin
                             Okudum
@@ -201,8 +201,8 @@
                 <input id="count" name="count" type="hidden" th:value="1"/>
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
-                        <button class="btn btn-primary " onclick="showLoadingSpinner(1,'fetih')"
-                                th:disabled="${allCounts.fetih == 0}" type="submit">
+                        <button class="btn btn-primary " onclick="showLoadingSpinner(this,event,1,'fetih')"
+                                th:disabled="${allCounts.fetih == 0}" >
                             1 &nbsp;Fetih&nbsp;&nbsp;
                             Okudum
                         </button>
@@ -216,8 +216,8 @@
                 <input id="count" name="count" type="hidden" th:value="5"/>
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
-                        <button class="btn btn-primary " onclick="showLoadingSpinner(5,'fetih')"
-                                th:disabled="${allCounts.fetih == 0}" type="submit">
+                        <button class="btn btn-primary " onclick="showLoadingSpinner(this,event,5,'fetih')"
+                                th:disabled="${allCounts.fetih == 0}" >
                             5 &nbsp;Fetih&nbsp;&nbsp;
                             Okudum
                         </button>
@@ -231,8 +231,8 @@
                 <input id="count" name="count" type="hidden" th:value="10"/>
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
-                        <button class="btn btn-primary " onclick="showLoadingSpinner(10,'fetih')"
-                                th:disabled="${allCounts.fetih == 0}" type="submit">
+                        <button class="btn btn-primary " onclick="showLoadingSpinner(this,event,10,'fetih')"
+                                th:disabled="${allCounts.fetih == 0}" >
                             10 &nbsp;Fetih&nbsp;&nbsp;
                             Okudum
                         </button>
@@ -247,8 +247,8 @@
                 <input id="count" name="count" type="hidden" th:value="20"/>
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
-                        <button class="btn btn-primary " onclick="showLoadingSpinner(20,'fetih')"
-                                th:disabled="${allCounts.fetih == 0}" type="submit">
+                        <button class="btn btn-primary " onclick="showLoadingSpinner(this,event,20,'fetih')"
+                                th:disabled="${allCounts.fetih == 0}" >
                             20 &nbsp;Fetih&nbsp;&nbsp;
                             Okudum
                         </button>
@@ -261,8 +261,8 @@
                 <input id="count" name="count" type="hidden" th:value="50"/>
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
-                        <button class="btn btn-primary " onclick="showLoadingSpinner(30,'fetih')"
-                                th:disabled="${allCounts.fetih == 0}" type="submit">
+                        <button class="btn btn-primary " onclick="showLoadingSpinner(this,event,30,'fetih')"
+                                th:disabled="${allCounts.fetih == 0}" >
                             50 &nbsp;Fetih&nbsp;&nbsp;
                             Okudum
                         </button>
@@ -277,8 +277,8 @@
                 <input id="count" name="count" type="hidden" th:value="100"/>
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
-                        <button class="btn btn-primary " onclick="showLoadingSpinner(100,'fetih')"
-                                th:disabled="${allCounts.fetih == 0}" type="submit">100 Fetih Okudum
+                        <button class="btn btn-primary " onclick="showLoadingSpinner(this,event,100,'fetih')"
+                                th:disabled="${allCounts.fetih == 0}" >100 Fetih Okudum
                         </button>
                     </div>
                 </div>
@@ -291,8 +291,8 @@
                 <input id="count" name="count" type="hidden" th:value="200"/>
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
-                        <button class="btn btn-primary " onclick="showLoadingSpinner(200,'fetih')"
-                                th:disabled="${allCounts.fetih == 0}" type="submit">
+                        <button class="btn btn-primary " onclick="showLoadingSpinner(this,event,200,'fetih')"
+                                th:disabled="${allCounts.fetih == 0}" >
                             200 Fetih Okudum
                         </button>
                     </div>
@@ -326,8 +326,8 @@
                 <input id="count" name="count" type="hidden" th:value="1"/>
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
-                        <button class="btn btn-primary " onclick="showLoadingSpinner(1,'cevsen')"
-                                th:disabled="${allCounts.cevsen == 0}" type="submit">
+                        <button class="btn btn-primary " onclick="showLoadingSpinner(this,event,1,'cevsen')"
+                                th:disabled="${allCounts.cevsen == 0}" >
                             1
                             Cevşen
                             Okudum
@@ -342,8 +342,8 @@
                 <input id="count" name="count" type="hidden" th:value="5"/>
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
-                        <button class="btn btn-primary " onclick="showLoadingSpinner(5,'cevsen')"
-                                th:disabled="${allCounts.cevsen == 0}" type="submit">
+                        <button class="btn btn-primary " onclick="showLoadingSpinner(this,event,5,'cevsen')"
+                                th:disabled="${allCounts.cevsen == 0}" >
                             5
                             Cevşen
                             Okudum
@@ -358,8 +358,8 @@
                 <input id="count" name="count" type="hidden" th:value="10"/>
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
-                        <button class="btn btn-primary " onclick="showLoadingSpinner(10,'cevsen')"
-                                th:disabled="${allCounts.cevsen == 0}" type="submit">
+                        <button class="btn btn-primary " onclick="showLoadingSpinner(this,event,10,'cevsen')"
+                                th:disabled="${allCounts.cevsen == 0}" >
                             10
                             Cevşen
                             Okudum
@@ -374,8 +374,8 @@
                 <input id="count" name="count" type="hidden" th:value="20"/>
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
-                        <button class="btn btn-primary " onclick="showLoadingSpinner(20,'cevsen')"
-                                th:disabled="${allCounts.cevsen == 0}" type="submit">
+                        <button class="btn btn-primary " onclick="showLoadingSpinner(this,event,20,'cevsen')"
+                                th:disabled="${allCounts.cevsen == 0}" >
                             20
                             Cevşen
                             Okudum
@@ -390,8 +390,8 @@
                 <input id="count" name="count" type="hidden" th:value="50"/>
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
-                        <button class="btn btn-primary " onclick="showLoadingSpinner(50,'cevsen')"
-                                th:disabled="${allCounts.cevsen == 0}" type="submit">
+                        <button class="btn btn-primary " onclick="showLoadingSpinner(this,event,50,'cevsen')"
+                                th:disabled="${allCounts.cevsen == 0}" >
                             50
                             Cevşen
                             Okudum
@@ -407,8 +407,8 @@
                 <input id="count" name="count" type="hidden" th:value="100"/>
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
-                        <button class="btn btn-primary " onclick="showLoadingSpinner(100,'cevsen')"
-                                th:disabled="${allCounts.cevsen == 0}" type="submit">100
+                        <button class="btn btn-primary " onclick="showLoadingSpinner(this,event,100,'cevsen')"
+                                th:disabled="${allCounts.cevsen == 0}" >100
                             Cevşen
                             Okudum
                         </button>
@@ -422,8 +422,8 @@
                 <input id="count" name="count" type="hidden" th:value="200"/>
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
-                        <button class="btn btn-primary " onclick="showLoadingSpinner(200,'cevsen')"
-                                th:disabled="${allCounts.cevsen == 0}" type="submit">200 Cevşen
+                        <button class="btn btn-primary " onclick="showLoadingSpinner(this,event,200,'cevsen')"
+                                th:disabled="${allCounts.cevsen == 0}" >200 Cevşen
                             Okudum
                         </button>
                     </div>
@@ -437,15 +437,16 @@
 
 <link th:href="@{/webjars/bootstrap/5.2.3/css/bootstrap.min.css}" th:rel="stylesheet"/>
 <script th:src="@{/webjars/bootstrap/5.2.3/js/bootstrap.min.js}"></script>
-<script th:src="@{webjars/jquery/3.6.4/jquery.min.js}"></script>
+<script th:src="@{/webjars/jquery/3.6.4/jquery.min.js}"></script>
+<script th:src="@{/webjars/popper.js/2.9.3/umd/popper.min.js}" type="text/javascript"></script>
 <link th:href="@{/webjars/font-awesome/6.3.0/css/all.min.css}" th:rel="stylesheet"/>
-
 <link rel="stylesheet" th:href="@{/css/styles.css}"/>
+<script th:src="@{/js/bootbox.all.min.js}" type="text/javascript"></script>
+<script th:src="@{/js/bootbox.locales.min.js}" type="text/javascript"></script>
 <link rel="">
 
 <div th:replace="~{fragments/footer :: footer}"></div>
 
-<!-- Spinner'ı ekranda gösteren fonksiyonu yazın -->
 <script>
 
     $(document).ready(function () {
@@ -458,14 +459,37 @@
     });
 
 
-    function showLoadingSpinner(count, type) {
-        // Spinner HTML kodunu oluşturun
-        var spinnerHtml = '<div class="loading-spinner"><i class="fa-solid fa-spinner fa-spin-pulse fa-lg" style="color: #0d6efd; text-align: center"></i></div>';
+    function showLoadingSpinner(elem,event,count, type) {
 
-        // Spinner'ı formun içine ekleyin
-        $('#updateSurahCountForm1').append(spinnerHtml);
+        event.preventDefault();
 
-        localStorage.setItem("lasActiveSurah", count + "-" + type);
+        var form = jQuery(elem).closest("form");
+
+        bootbox.confirm({
+            title: 'Teyit',
+            centerVertical: true,
+            message: count + ' adet '+type + ' okuduğunuza emin misiniz?',
+            locale: 'tr',
+            buttons: {
+                cancel: {
+                    label: '<i class="fa fa-times"></i> İptal'
+                },
+                confirm: {
+                    label: '<i class="fa fa-check"></i> Onayla'
+                }
+            },
+            callback: function (result) {
+                if(result === true) {
+                    var spinnerHtml = '<div class="loading-spinner"><i class="fa-solid fa-spinner fa-spin-pulse fa-lg" style="color: #0d6efd; text-align: center"></i></div>';
+                    // Spinner'ı formun içine ekleyin
+                    $('#updateSurahCountForm1').append(spinnerHtml);
+                    localStorage.setItem("lasActiveSurah", count + "-" + type);
+                    form.submit();
+                } else if (result === false) {
+                    console.log('This was logged in the callback: ' + result);
+                }
+            }
+        });
 
     }
 </script>
