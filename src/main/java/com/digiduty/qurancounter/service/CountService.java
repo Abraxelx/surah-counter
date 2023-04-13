@@ -2,6 +2,7 @@ package com.digiduty.qurancounter.service;
 
 import com.digiduty.qurancounter.model.*;
 
+import java.io.IOException;
 import java.util.concurrent.ExecutionException;
 
 public interface CountService {
@@ -12,4 +13,6 @@ public interface CountService {
      String updateCounts(SurahsEnum surahsEnum, int decreaseValue) throws ExecutionException, InterruptedException;
     Progress progressBarValueCalculator() throws ExecutionException, InterruptedException;
     <T> T fillModel(String collectionName, Class<T> clazz) throws ExecutionException, InterruptedException;
+
+    byte[] getSiteMap() throws IOException;
 }

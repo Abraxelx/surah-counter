@@ -6,8 +6,11 @@ import com.digiduty.qurancounter.service.CountService;
 import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.*;
 import com.google.firebase.cloud.FirestoreClient;
+import org.apache.commons.io.IOUtils;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
@@ -92,6 +95,12 @@ public class CountServiceImpl implements CountService {
             }
         }
         return null;
+    }
+
+    @Override
+    public byte[] getSiteMap() throws IOException {
+        InputStream inputStream = getClass().getResourceAsStream("/static/xml/sitemap.xml");
+        return IOUtils.toByteArray(inputStream);
     }
 
 }
