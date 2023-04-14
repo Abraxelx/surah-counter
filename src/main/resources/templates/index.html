@@ -14,11 +14,8 @@
 
     <link rel="icon" th:href="@{/images/favicon.ico}" type="image/x-icon">
     <link th:href="@{/webjars/bootstrap/5.2.3/css/bootstrap.min.css}" th:rel="stylesheet">
-    <script th:src="@{/webjars/bootstrap/5.2.3/js/bootstrap.min.js}"></script>
-    <script th:src="@{/webjars/jquery/3.6.4/jquery.min.js}"></script>
     <link th:href="@{/webjars/font-awesome/6.3.0/css/all.min.css}" th:rel="stylesheet">
     <link rel="stylesheet" th:href="@{/css/styles.css}">
-    <script th:src="@{/js/bootbox.all.min.js}"></script>
 </head>
 <body>
 
@@ -429,52 +426,9 @@
 
 <div th:replace="~{fragments/footer :: footer}"></div>
 
-<script>
-
-    $(document).ready(function () {
-        // Verileri önbellekten alma
-        if (localStorage.getItem("lasActiveSurah")) {
-            // Veriler önbellekte varsa, önbellekten verileri al
-            var data = localStorage.getItem("lasActiveSurah");
-            $('#lastActiveSurah').append("Son Okunan: " + data.split("-")[0] + " tane " + data.split("-")[1]);
-        }
-    });
-
-
-    function showLoadingSpinner(elem,event,count, type) {
-
-        event.preventDefault();
-
-        var form = jQuery(elem).closest("form");
-
-        bootbox.confirm({
-            title: 'Teyit',
-            centerVertical: true,
-            message: count + ' adet '+type + ' okuduğunuza emin misiniz?',
-            locale: 'tr',
-            buttons: {
-                cancel: {
-                    label: '<i class="fa fa-times"></i> İptal'
-                },
-                confirm: {
-                    label: '<i class="fa fa-check"></i> Onayla'
-                }
-            },
-            callback: function (result) {
-                if(result === true) {
-                    var spinnerHtml = '<div class="loading-spinner"><i class="fa-solid fa-spinner fa-spin-pulse fa-lg" style="color: #0d6efd; text-align: center"></i></div>';
-                    // Spinner'ı formun içine ekleyin
-                    $('#updateSurahCountForm1').append(spinnerHtml);
-                    localStorage.setItem("lasActiveSurah", count + "-" + type);
-                    form.submit();
-                } else if (result === false) {
-                    console.log('This was logged in the callback: ' + result);
-                }
-            }
-        });
-
-    }
-</script>
-
+<script th:src="@{/webjars/bootstrap/5.2.3/js/bootstrap.min.js}"></script>
+<script th:src="@{/webjars/jquery/3.6.4/jquery.min.js}"></script>
+<script th:src="@{/js/bootbox.all.min.js}"></script>
+<script th:src="@{/js/scripts.js}"></script>
 </body>
 </html>
