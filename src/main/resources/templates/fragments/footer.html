@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" lang="tr">
 
 <head>
     <title></title>
@@ -12,7 +13,7 @@
 
     <footer class="my-sm-3 pt-5 text-center">
         <!-- this is footer -->
-        <h2 class="text-center"> سُبْحَانَكَ لاَعِلْمَ لَنَاۤ اِلاَّ مَاعَلَّمْتَنَاۤ اِنَّكَ اَنْتَ الْعَلِيمُ الْحَكِيمُ</h2>
+        <h2 class="text-center" th:text="${subhanekeText}"></h2>
         <hr>
         <div class="justify-content-md-center">
             <p class="mb-4">Copyright <i class="fa fa-copyright"></i> 2023 "Quran Counter" Her Hakkı Mahfuzdur.</p>
