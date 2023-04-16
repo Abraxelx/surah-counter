@@ -16,8 +16,8 @@
     <meta name="author" content="Halil Şahin">
 
     <link rel="icon" th:href="@{/images/favicon.ico}" type="image/x-icon">
-    <link th:href="@{/webjars/bootstrap/5.2.3/css/bootstrap.min.css}" th:rel="stylesheet">
-    <link th:href="@{/webjars/font-awesome/6.4.0/css/all.min.css}" th:rel="stylesheet">
+    <link th:href="@{/webjars/bootstrap/5.2.3/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/webjars/font-awesome/6.4.0/css/all.min.css}" rel="stylesheet">
     <link rel="stylesheet" th:href="@{/css/styles.css}">
 </head>
 <body>
@@ -25,9 +25,9 @@
 
 <div class="container justify-content-center align-items-center">
     <img class="d-block mx-auto mb-4" th:src="@{/images/quran.png}" width="72" height="72" alt="kuranla-yasiyorum">
-    <div class="card text-center mt-4 mb-lg-5" style="background-color: #eeeeee">
-        <h2 class="card-title">بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيم</h2>
-        <h3 class="daily-hadis card-text" th:utext="${dailyHadis.hadis}"></h3>
+    <div class="text-center mt-4 mb-lg-5" style="background-color: #eeeeee">
+        <h2 class="mt-4 mb-4">بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيم</h2>
+        <h3 class="daily-hadis" th:utext="${dailyHadis.hadis}"></h3>
     </div>
     <!-- Yasin Start -->
 
@@ -138,7 +138,7 @@
 <br>
     <div class="counter-section wow fadeInUp animated" data-wow-duration="400ms"
          style="animation-duration: 400ms; animation-name: fadeInUp;">
-        <i class="fa fa-kaaba medium-icon"></i>
+        <i class="fa fa-mosque medium-icon"></i>
         <span class="timer counter alt-font appear" data-to="1000000" data-speed="7000"
               th:text="${allCounts.fetih}"></span>
         <span class="counter-title">1 Milyondan Kalan Fetih Suresi</span>
@@ -250,7 +250,7 @@
     <!-- Cevşen Start -->
     <div class="counter-section wow fadeInUp animated" data-wow-duration="600ms"
          style="animation-duration: 600ms; animation-name: fadeInUp;">
-        <i class="fa fa-kaaba medium-icon"></i>
+        <i class="fa fa-moon medium-icon"></i>
         <span class="timer counter alt-font appear" data-to="100000" data-speed="7000"
               th:text="${allCounts.cevsen}"></span>
         <span class="counter-title">Yüzbinden Kalan Cevşen-ul Kebir</span>
