@@ -43,7 +43,7 @@
 
     <div class="col-12 mb-12">
         <div class="progress">
-            <div class="progress-bar progress-bar-animated bg-success" role="progressbar"
+            <div class="progress-bar progress-bar-animated bg-success" role="progressbar" aria-labelledby="yasin-progress"
                  th:aria-valuenow="${allReverseCounts.reverseYasin}" aria-valuemin="0"
                  th:aria-valuemax="${allMaxCounts.yasinMaxCount}"
                  th:style="'width:' + ${progressBarPercentage.yasinProgress} + '%'">
@@ -146,7 +146,7 @@
 
     <div class="col-12 mb-12">
         <div class="progress">
-            <div class="progress-bar progress-bar-animated bg-success" role="progressbar"
+            <div class="progress-bar progress-bar-animated bg-success" role="progressbar" aria-labelledby="fetih-progress"
                  th:aria-valuenow="${allReverseCounts.reverseFetih}"
                  aria-valuemin="0"
                  th:aria-valuemax="${allMaxCounts.fetihMaxCount}"
@@ -258,7 +258,7 @@
 
     <div class="col-12 mb-12">
         <div class="progress">
-            <div class="progress-bar progress-bar-animated bg-success" role="progressbar"
+            <div class="progress-bar progress-bar-animated bg-success" role="progressbar" aria-labelledby="cevsen-progress"
                  th:aria-valuenow="${allReverseCounts.reverseCevsen}"
                  aria-valuemin="0"
                  th:aria-valuemax="${allMaxCounts.cevsenMaxCount}"
