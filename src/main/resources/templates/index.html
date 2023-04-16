@@ -3,9 +3,12 @@
       xmlns:th="http://www.thymeleaf.org" lang="tr">
 <head>
     <title>Kur'an Sayacı - Kur'an ile Yaşıyoruz</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="title" content="Kur'an ile Yaşıyoruz...">
-    <meta name="description" content="Kur'an Sayacı Def'i Bela için1 Milyon Yasin - 1 Milyon Fetih - 100bin Cevşen zikrine müdahil olunuz.">
-    <meta name="keywords" content="kuran,cevşen,yasin,zikir halkası, def'i bela,hadis,risale-i nur,ayet,kuran oku,yasin oku,kuran sayacı,ayet sayacı,hatim">
+    <meta name="description"
+          content="Kur'an Sayacı Def'i Bela için1 Milyon Yasin - 1 Milyon Fetih - 100bin Cevşen zikrine müdahil olunuz.">
+    <meta name="keywords"
+          content="kuran,cevşen,yasin,zikir halkası, def'i bela,hadis,risale-i nur,ayet,kuran oku,yasin oku,kuran sayacı,ayet sayacı,hatim">
     <meta name="robots" content="index, follow">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="language" content="Turkish">
@@ -14,417 +17,349 @@
 
     <link rel="icon" th:href="@{/images/favicon.ico}" type="image/x-icon">
     <link th:href="@{/webjars/bootstrap/5.2.3/css/bootstrap.min.css}" th:rel="stylesheet">
-    <link th:href="@{/webjars/font-awesome/6.3.0/css/all.min.css}" th:rel="stylesheet">
+    <link th:href="@{/webjars/font-awesome/6.4.0/css/all.min.css}" th:rel="stylesheet">
     <link rel="stylesheet" th:href="@{/css/styles.css}">
 </head>
 <body>
 
 
-<div class="container">
-
-    <hr>
-    <div class="daily-hadis" id="lastActiveSurah"></div>
-    <hr>
-
-    <div class="py-5 text-center">
-        <img class="d-block mx-auto mb-4" th:src="@{/images/quran.png}" width="72" height="72" alt="kuran-sayaci">
-        <h2>بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيم</h2>
-        <br>
-        <hr>
-        <div class="daily-hadis" th:utext="${dailyHadis.hadis}"></div>
-        <hr>
-
-
+<div class="container justify-content-center align-items-center">
+    <img class="d-block mx-auto mb-4" th:src="@{/images/quran.png}" width="72" height="72" alt="kuranla-yasiyorum">
+    <div class="card text-center mt-4 mb-lg-5" style="background-color: #eeeeee">
+        <h2 class="card-title">بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيم</h2>
+        <h3 class="daily-hadis card-text" th:utext="${dailyHadis.hadis}"></h3>
     </div>
-    <br>
     <!-- Yasin Start -->
-    <h4 class="text-center">1 Milyondan Kalan Yasin Suresi: <br> <span th:text="${allCounts.yasin}"></span></h4>
 
-    <div class="progress">
-        <div class="progress-bar   progress-bar-animated bg-success" role="progressbar"
-             th:aria-valuenow="${allReverseCounts.reverseYasin}" aria-valuemin="0"
-             th:aria-valuemax="${allMaxCounts.yasinMaxCount}"
-             th:style="'width:' + ${progressBarPercentage.yasinProgress} + '%'">
-            <span th:text="${#numbers.formatDecimal(progressBarPercentage.yasinProgress, 0, 2)+ '%'}"></span>
+    <br>
+
+    <div class="counter-section wow fadeInUp animated" data-wow-duration="600ms"
+         style="animation-duration: 600ms; animation-name: fadeInUp;">
+        <i class="fa fa-kaaba medium-icon"></i>
+        <span class="timer counter alt-font appear" data-to="1000000" data-speed="7000"
+              th:text="${allCounts.yasin}"></span>
+        <span class="counter-title">1 Milyondan Kalan Yasin Suresi</span>
+    </div>
+
+    <div class="col-12 mb-12">
+        <div class="progress">
+            <div class="progress-bar progress-bar-animated bg-success" role="progressbar"
+                 th:aria-valuenow="${allReverseCounts.reverseYasin}" aria-valuemin="0"
+                 th:aria-valuemax="${allMaxCounts.yasinMaxCount}"
+                 th:style="'width:' + ${progressBarPercentage.yasinProgress} + '%'">
+                <span th:text="${#numbers.formatDecimal(progressBarPercentage.yasinProgress, 0, 2)+ '%'}"></span>
+            </div>
         </div>
     </div>
-    <br>
+
+
     <!-- Yasin Button Group Start -->
-    <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-        <div class="btn-group mt-2" role="group" aria-label="first-group">
-            <form action="#" id="updateSurahCountForm1" class="form-horizontal" method="post"
+    <div class="btn-toolbar mb-lg-4 mt-lg-3" role="toolbar" aria-label="Yasin Toolbar">
+        <div class="btn-group me-2" role="group" aria-label="1 Yasin Group">
+            <form action="#" id="updateSurahCountForm1" method="post"
                   th:action="@{/updateSurahCount}" th:object="${surahForm}">
                 <input name="surahType" type="hidden" th:value="YASIN">
                 <input name="count" type="hidden" th:value="1">
-                <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10">
-                        <button class="btn btn-primary" onclick="showLoadingSpinner(this,event,1,'yasin')"
-                                th:disabled="${allCounts.yasin == 0}" >
-                            1 &nbsp;Yasin&nbsp;&nbsp;
-                            Okudum
-                        </button>
-                    </div>
-                </div>
+                <button class="btn btn-primary btn-lg mt-1 btn-block p-lg-4"
+                        onclick="showLoadingSpinner(this,event,1,'yasin')"
+                        th:disabled="${allCounts.yasin == 0}">
+                    1 Yasin<br>Okudum
+                </button>
             </form>
+        </div>
 
-            <form action="#" class="form-horizontal" method="post"
+        <div class="btn-group me-2" role="group" aria-label="5 Yasin Group">
+            <form action="#" method="post"
                   th:action="@{/updateSurahCount}" th:object="${surahForm}">
                 <input name="surahType" type="hidden" th:value="YASIN">
                 <input name="count" type="hidden" th:value="5">
-                <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10">
-                        <button class="btn btn-primary " onclick="showLoadingSpinner(this,event,5,'yasin')"
-                                th:disabled="${allCounts.yasin == 0}" >
-                            5 &nbsp;Yasin&nbsp;&nbsp;
-                            Okudum
-                        </button>
-                    </div>
-                </div>
+                <button class="btn btn-primary mt-1 btn-lg btn-block p-lg-4"
+                        onclick="showLoadingSpinner(this,event,5,'yasin')"
+                        th:disabled="${allCounts.yasin == 0}">
+                    5 Yasin <br>Okudum
+                </button>
             </form>
+        </div>
 
-            <form action="#" class="form-horizontal" method="post"
+        <div class="btn-group me-2" role="group" aria-label="10 Yasin Group">
+            <form action="#" method="post"
                   th:action="@{/updateSurahCount}" th:object="${surahForm}">
                 <input name="surahType" type="hidden" th:value="YASIN">
                 <input name="count" type="hidden" th:value="10">
-                <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10">
-                        <button class="btn btn-primary " onclick="showLoadingSpinner(this,event,10,'yasin')"
-                                th:disabled="${allCounts.yasin == 0}" >
-                            10&nbsp;
-                            Yasin
-                            Okudum
-                        </button>
-                    </div>
-                </div>
+                <button class="btn btn-primary mt-1 btn-lg btn-block p-lg-4"
+                        onclick="showLoadingSpinner(this,event,10,'yasin')"
+                        th:disabled="${allCounts.yasin == 0}">
+                    10 Yasin<br>Okudum
+                </button>
             </form>
-
-            <form action="#" class="form-horizontal" method="post"
+        </div>
+        <div class="btn-group me-2" role="group" aria-label="20 Yasin Group">
+            <form action="#" method="post"
                   th:action="@{/updateSurahCount}" th:object="${surahForm}">
                 <input name="surahType" type="hidden" th:value="YASIN">
                 <input name="count" type="hidden" th:value="20">
-                <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10">
-                        <button class="btn btn-primary " onclick="showLoadingSpinner(this,event,20,'yasin')"
-                                th:disabled="${allCounts.yasin == 0}" >
-                            20&nbsp; Yasin Okudum
-                        </button>
-                    </div>
-                </div>
+                <button class="btn btn-primary mt-1 btn-lg btn-block p-lg-4"
+                        onclick="showLoadingSpinner(this,event,20,'yasin')"
+                        th:disabled="${allCounts.yasin == 0}">
+                    20 Yasin<br>Okudum
+                </button>
             </form>
+        </div>
 
-            <form action="#" class="form-horizontal" method="post"
+        <div class="btn-group me-2" role="group" aria-label="50 Yasin Group">
+            <form action="#" method="post"
                   th:action="@{/updateSurahCount}" th:object="${surahForm}">
                 <input name="surahType" type="hidden" th:value="YASIN">
                 <input name="count" type="hidden" th:value="50">
-                <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10">
-                        <button class="btn btn-primary " onclick="showLoadingSpinner(this,event,50,'yasin')"
-                                th:disabled="${allCounts.yasin == 0}" >
-                            50&nbsp;
-                            Yasin
-                            Okudum
-                        </button>
-                    </div>
-                </div>
+                <button class="btn btn-primary mt-1 btn-lg btn-block p-lg-4"
+                        onclick="showLoadingSpinner(this,event,50,'yasin')"
+                        th:disabled="${allCounts.yasin == 0}">
+                    50 Yasin<br>Okudum
+                </button>
             </form>
+        </div>
 
-            <form action="#" class="form-horizontal" method="post"
+        <div class="btn-group" role="group" aria-label="100 Yasin Group">
+            <form action="#" method="post"
                   th:action="@{/updateSurahCount}" th:object="${surahForm}">
                 <input name="surahType" type="hidden" th:value="YASIN">
                 <input name="count" type="hidden" th:value="100">
-                <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10">
-                        <button class="btn btn-primary " onclick="showLoadingSpinner(this,event,100,'yasin')"
-                                th:disabled="${allCounts.yasin == 0}" >
-                            100
-                            Yasin
-                            Okudum
-                        </button>
-                    </div>
-                </div>
-            </form>
-
-            <form action="#" class="form-horizontal" method="post"
-                  th:action="@{/updateSurahCount}" th:object="${surahForm}">
-                <input name="surahType" type="hidden" th:value="YASIN">
-                <input name="count" type="hidden" th:value="200">
-                <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10">
-                        <button class="btn btn-primary " onclick="showLoadingSpinner(this,event,200,'yasin')"
-                                th:disabled="${allCounts.yasin == 0}" >
-                            200
-                            Yasin
-                            Okudum
-                        </button>
-                    </div>
-                </div>
+                <button class="btn btn-primary mt-1 btn-lg btn-block p-lg-4"
+                        onclick="showLoadingSpinner(this,event,100,'yasin')"
+                        th:disabled="${allCounts.yasin == 0}">
+                    100 Yasin<br>Okudum
+                </button>
             </form>
         </div>
     </div>
-
-
-    <br>
-    <br>
 
     <!-- Fetih Start -->
 
-    <h4 class="text-center">1 Milyondan Kalan Fetih Suresi:<br> <span th:text="${allCounts.fetih}"></span></h4>
-    <div class="progress">
-        <div class="progress-bar   progress-bar-animated bg-success" role="progressbar"
-             th:aria-valuenow="${allReverseCounts.reverseFetih}"
-             aria-valuemin="0"
-             th:aria-valuemax="${allMaxCounts.fetihMaxCount}"
-             th:style="'width:' + ${progressBarPercentage.fetihProgress} + '%'">
-            <span th:text="${#numbers.formatDecimal(progressBarPercentage.fetihProgress, 0, 2)+ '%'}"></span>
+<br>
+    <div class="counter-section wow fadeInUp animated" data-wow-duration="400ms"
+         style="animation-duration: 400ms; animation-name: fadeInUp;">
+        <i class="fa fa-kaaba medium-icon"></i>
+        <span class="timer counter alt-font appear" data-to="1000000" data-speed="7000"
+              th:text="${allCounts.fetih}"></span>
+        <span class="counter-title">1 Milyondan Kalan Fetih Suresi</span>
+    </div>
+
+    <div class="col-12 mb-12">
+        <div class="progress">
+            <div class="progress-bar progress-bar-animated bg-success" role="progressbar"
+                 th:aria-valuenow="${allReverseCounts.reverseFetih}"
+                 aria-valuemin="0"
+                 th:aria-valuemax="${allMaxCounts.fetihMaxCount}"
+                 th:style="'width:' + ${progressBarPercentage.fetihProgress} + '%'">
+                <span th:text="${#numbers.formatDecimal(progressBarPercentage.fetihProgress, 0, 2)+ '%'}"></span>
+            </div>
         </div>
     </div>
-    <br>
 
     <!-- Fetih Button Group Start -->
 
-    <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-        <div class="btn-group mt-2" role="group" aria-label="first-group">
-
-            <form action="#" class="form-horizontal" method="post"
+    <div class="btn-toolbar mb-lg-4 mt-lg-3" role="toolbar" aria-label="Fetih Toolbar">
+        <div class="btn-group me-2" role="group" aria-label="1 Fetih Group">
+            <form action="#" method="post"
                   th:action="@{/updateSurahCount}" th:object="${surahForm}">
                 <input name="surahType" type="hidden" th:value="FETIH">
                 <input name="count" type="hidden" th:value="1">
                 <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10">
-                        <button class="btn btn-primary " onclick="showLoadingSpinner(this,event,1,'fetih')"
-                                th:disabled="${allCounts.fetih == 0}" >
-                            1 &nbsp;Fetih&nbsp;&nbsp;
-                            Okudum
-                        </button>
-                    </div>
+                    <button class="btn btn-primary btn-lg mt-1 btn-block p-lg-4"
+                            onclick="showLoadingSpinner(this,event,1,'fetih')"
+                            th:disabled="${allCounts.fetih == 0}">1 Fetih<br>Okudum
+                    </button>
                 </div>
             </form>
+        </div>
 
-            <form action="#" class="form-horizontal" method="post"
+        <div class="btn-group me-2" role="group" aria-label="5 Fetih Group">
+            <form action="#" method="post"
                   th:action="@{/updateSurahCount}" th:object="${surahForm}">
                 <input name="surahType" type="hidden" th:value="FETIH">
                 <input name="count" type="hidden" th:value="5">
                 <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10">
-                        <button class="btn btn-primary " onclick="showLoadingSpinner(this,event,5,'fetih')"
-                                th:disabled="${allCounts.fetih == 0}" >
-                            5 &nbsp;Fetih&nbsp;&nbsp;
-                            Okudum
-                        </button>
-                    </div>
+                    <button class="btn btn-primary btn-lg mt-1 btn-block p-lg-4"
+                            onclick="showLoadingSpinner(this,event,5,'fetih')"
+                            th:disabled="${allCounts.fetih == 0}">5 Fetih<br>Okudum
+                    </button>
                 </div>
             </form>
+        </div>
 
-            <form action="#" class="form-horizontal" method="post"
+        <div class="btn-group me-2" role="group" aria-label="10 Fetih Group">
+            <form action="#" method="post"
                   th:action="@{/updateSurahCount}" th:object="${surahForm}">
                 <input name="surahType" type="hidden" th:value="FETIH">
                 <input name="count" type="hidden" th:value="10">
                 <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10">
-                        <button class="btn btn-primary " onclick="showLoadingSpinner(this,event,10,'fetih')"
-                                th:disabled="${allCounts.fetih == 0}" >
-                            10 &nbsp;Fetih&nbsp;&nbsp;
-                            Okudum
-                        </button>
-                    </div>
+                    <button class="btn btn-primary btn-lg mt-1 btn-block p-lg-4"
+                            onclick="showLoadingSpinner(this,event,10,'fetih')"
+                            th:disabled="${allCounts.fetih == 0}">10 Fetih<br>Okudum
+                    </button>
                 </div>
             </form>
+        </div>
 
-
-            <form action="#" class="form-horizontal" method="post"
+        <div class="btn-group me-2" role="group" aria-label="20 Fetih Group">
+            <form action="#" method="post"
                   th:action="@{/updateSurahCount}" th:object="${surahForm}">
                 <input name="surahType" type="hidden" th:value="FETIH">
                 <input name="count" type="hidden" th:value="20">
                 <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10">
-                        <button class="btn btn-primary " onclick="showLoadingSpinner(this,event,20,'fetih')"
-                                th:disabled="${allCounts.fetih == 0}" >
-                            20 &nbsp;Fetih&nbsp;&nbsp;
-                            Okudum
-                        </button>
-                    </div>
+                    <button class="btn btn-primary btn-lg mt-1 btn-block p-lg-4"
+                            onclick="showLoadingSpinner(this,event,20,'fetih')"
+                            th:disabled="${allCounts.fetih == 0}">20 Fetih<br>Okudum
+                    </button>
                 </div>
             </form>
-            <form action="#" class="form-horizontal" method="post"
+        </div>
+
+        <div class="btn-group me-2" role="group" aria-label="50 Fetih Group">
+            <form action="#" method="post"
                   th:action="@{/updateSurahCount}" th:object="${surahForm}">
                 <input name="surahType" type="hidden" th:value="FETIH">
                 <input name="count" type="hidden" th:value="50">
                 <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10">
-                        <button class="btn btn-primary " onclick="showLoadingSpinner(this,event,30,'fetih')"
-                                th:disabled="${allCounts.fetih == 0}" >
-                            50 &nbsp;Fetih&nbsp;&nbsp;
-                            Okudum
-                        </button>
-                    </div>
+                    <button class="btn btn-primary btn-lg mt-1 btn-block p-lg-4"
+                            onclick="showLoadingSpinner(this,event,50,'fetih')"
+                            th:disabled="${allCounts.fetih == 0}">50 Fetih<br>Okudum
+                    </button>
                 </div>
             </form>
+        </div>
 
 
-            <form action="#" class="form-horizontal" method="post"
+        <div class="btn-group me-2" role="group" aria-label="100 Fetih Group">
+            <form action="#" method="post"
                   th:action="@{/updateSurahCount}" th:object="${surahForm}">
                 <input name="surahType" type="hidden" th:value="FETIH">
                 <input name="count" type="hidden" th:value="100">
                 <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10">
-                        <button class="btn btn-primary " onclick="showLoadingSpinner(this,event,100,'fetih')"
-                                th:disabled="${allCounts.fetih == 0}" >100 Fetih Okudum
-                        </button>
-                    </div>
-                </div>
-            </form>
-
-
-            <form action="#" class="form-horizontal" method="post"
-                  th:action="@{/updateSurahCount}" th:object="${surahForm}">
-                <input name="surahType" type="hidden" th:value="FETIH">
-                <input name="count" type="hidden" th:value="200">
-                <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10">
-                        <button class="btn btn-primary " onclick="showLoadingSpinner(this,event,200,'fetih')"
-                                th:disabled="${allCounts.fetih == 0}" >
-                            200 Fetih Okudum
-                        </button>
-                    </div>
+                    <button class="btn btn-primary btn-lg mt-1 btn-block p-lg-4"
+                            onclick="showLoadingSpinner(this,event,100,'fetih')"
+                            th:disabled="${allCounts.fetih == 0}">100 Fetih<br>Okudum
+                    </button>
                 </div>
             </form>
         </div>
     </div>
 
-    <br>
-    <br>
 
+    <br>
     <!-- Cevşen Start -->
-    <h4 class="text-center">Yüzbinden Kalan Cevşen-ul Kebir:<br> <span th:text="${allCounts.cevsen}"></span></h4>
-    <div class="progress">
-        <div class="progress-bar   progress-bar-animated bg-success" role="progressbar"
-             th:aria-valuenow="${allReverseCounts.reverseCevsen}"
-             aria-valuemin="0"
-             th:aria-valuemax="${allMaxCounts.cevsenMaxCount}"
-             th:style="'width:' + ${progressBarPercentage.cevsenProgress} + '%'">
-            <span th:text="${#numbers.formatDecimal(progressBarPercentage.cevsenProgress, 0, 2)+ '%'}"></span>
+    <div class="counter-section wow fadeInUp animated" data-wow-duration="600ms"
+         style="animation-duration: 600ms; animation-name: fadeInUp;">
+        <i class="fa fa-kaaba medium-icon"></i>
+        <span class="timer counter alt-font appear" data-to="100000" data-speed="7000"
+              th:text="${allCounts.cevsen}"></span>
+        <span class="counter-title">Yüzbinden Kalan Cevşen-ul Kebir</span>
+    </div>
+
+    <div class="col-12 mb-12">
+        <div class="progress">
+            <div class="progress-bar progress-bar-animated bg-success" role="progressbar"
+                 th:aria-valuenow="${allReverseCounts.reverseCevsen}"
+                 aria-valuemin="0"
+                 th:aria-valuemax="${allMaxCounts.cevsenMaxCount}"
+                 th:style="'width:' + ${progressBarPercentage.cevsenProgress} + '%'">
+                <span th:text="${#numbers.formatDecimal(progressBarPercentage.cevsenProgress, 0, 2)+ '%'}"></span>
+            </div>
         </div>
     </div>
-    <br>
 
     <!-- Cevşen Button Group Start -->
-    <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-        <div class="btn-group mt-2" role="group" aria-label="first-group">
-            <form action="#" class="form-horizontal" method="post"
+    <div class="btn-toolbar mb-lg-4 mt-lg-3" role="toolbar" aria-label="Cevsen Toolbar">
+        <div class="btn-group me-2" role="group" aria-label="1 Cevsen Group">
+            <form action="#" method="post"
                   th:action="@{/updateSurahCount}" th:object="${surahForm}" aria-label="Cevsen 1 Form">
                 <input name="surahType" type="hidden" th:value="CEVSEN">
                 <input name="count" type="hidden" th:value="1">
                 <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10">
-                        <button class="btn btn-primary " onclick="showLoadingSpinner(this,event,1,'cevsen')"
-                                th:disabled="${allCounts.cevsen == 0}" >
-                            1
-                            Cevşen
-                            Okudum
-                        </button>
-                    </div>
+                    <button class="btn btn-primary btn-lg mt-1 btn-block p-lg-4"
+                            onclick="showLoadingSpinner(this,event,1,'cevsen')"
+                            th:disabled="${allCounts.cevsen == 0}">1 Cevşen<br>Okudum
+                    </button>
                 </div>
             </form>
+        </div>
 
-            <form action="#" class="form-horizontal" method="post"
+        <div class="btn-group me-2" role="group" aria-label="5 Cevsen Group">
+            <form action="#" method="post"
                   th:action="@{/updateSurahCount}" th:object="${surahForm}">
                 <input name="surahType" type="hidden" th:value="CEVSEN">
                 <input name="count" type="hidden" th:value="5">
                 <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10">
-                        <button class="btn btn-primary " onclick="showLoadingSpinner(this,event,5,'cevsen')"
-                                th:disabled="${allCounts.cevsen == 0}" >
-                            5
-                            Cevşen
-                            Okudum
-                        </button>
-                    </div>
+                    <button class="btn btn-primary btn-lg mt-1 btn-block p-lg-4"
+                            onclick="showLoadingSpinner(this,event,5,'cevsen')"
+                            th:disabled="${allCounts.cevsen == 0}">5 Cevşen<br>Okudum
+                    </button>
                 </div>
             </form>
+        </div>
 
-            <form action="#" class="form-horizontal" method="post"
+        <div class="btn-group me-2" role="group" aria-label="10 Cevsen Group">
+            <form action="#" method="post"
                   th:action="@{/updateSurahCount}" th:object="${surahForm}">
                 <input name="surahType" type="hidden" th:value="CEVSEN">
                 <input name="count" type="hidden" th:value="10">
                 <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10">
-                        <button class="btn btn-primary " onclick="showLoadingSpinner(this,event,10,'cevsen')"
-                                th:disabled="${allCounts.cevsen == 0}" >
-                            10
-                            Cevşen
-                            Okudum
-                        </button>
-                    </div>
+                    <button class="btn btn-primary btn-lg mt-1 btn-block p-lg-4"
+                            onclick="showLoadingSpinner(this,event,10,'cevsen')"
+                            th:disabled="${allCounts.cevsen == 0}">10 Cevşen<br>Okudum
+                    </button>
                 </div>
             </form>
+        </div>
 
-            <form action="#" class="form-horizontal" method="post"
+        <div class="btn-group me-2" role="group" aria-label="20 Cevsen Group">
+            <form action="#" method="post"
                   th:action="@{/updateSurahCount}" th:object="${surahForm}">
                 <input name="surahType" type="hidden" th:value="CEVSEN">
                 <input name="count" type="hidden" th:value="20">
                 <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10">
-                        <button class="btn btn-primary " onclick="showLoadingSpinner(this,event,20,'cevsen')"
-                                th:disabled="${allCounts.cevsen == 0}" >
-                            20
-                            Cevşen
-                            Okudum
-                        </button>
-                    </div>
+                    <button class="btn btn-primary btn-lg mt-1 btn-block p-lg-4"
+                            onclick="showLoadingSpinner(this,event,20,'cevsen')"
+                            th:disabled="${allCounts.cevsen == 0}">20 Cevşen<br>Okudum
+                    </button>
                 </div>
             </form>
+        </div>
 
-            <form action="#" class="form-horizontal" method="post"
+        <div class="btn-group me-2" role="group" aria-label="50 Cevsen Group">
+            <form action="#" method="post"
                   th:action="@{/updateSurahCount}" th:object="${surahForm}">
                 <input name="surahType" type="hidden" th:value="CEVSEN">
                 <input name="count" type="hidden" th:value="50">
                 <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10">
-                        <button class="btn btn-primary " onclick="showLoadingSpinner(this,event,50,'cevsen')"
-                                th:disabled="${allCounts.cevsen == 0}" >
-                            50
-                            Cevşen
-                            Okudum
-                        </button>
-                    </div>
+                    <button class="btn btn-primary btn-lg mt-1 btn-block p-lg-4"
+                            onclick="showLoadingSpinner(this,event,50,'cevsen')"
+                            th:disabled="${allCounts.cevsen == 0}">50 Cevşen<br>Okudum
+                    </button>
                 </div>
             </form>
+        </div>
 
 
-            <form action="#" class="form-horizontal" method="post"
+        <div class="btn-group me-2" role="group" aria-label="1 Cevsen Group">
+            <form action="#" method="post"
                   th:action="@{/updateSurahCount}" th:object="${surahForm}">
                 <input name="surahType" type="hidden" th:value="CEVSEN">
                 <input name="count" type="hidden" th:value="100">
                 <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10">
-                        <button class="btn btn-primary " onclick="showLoadingSpinner(this,event,100,'cevsen')"
-                                th:disabled="${allCounts.cevsen == 0}" >100
-                            Cevşen
-                            Okudum
-                        </button>
-                    </div>
-                </div>
-            </form>
-
-            <form action="#" class="form-horizontal" method="post"
-                  th:action="@{/updateSurahCount}" th:object="${surahForm}">
-                <input name="surahType" type="hidden" th:value="CEVSEN">
-                <input name="count" type="hidden" th:value="200">
-                <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10">
-                        <button class="btn btn-primary " onclick="showLoadingSpinner(this,event,200,'cevsen')"
-                                th:disabled="${allCounts.cevsen == 0}" >200 Cevşen
-                            Okudum
-                        </button>
-                    </div>
+                    <button class="btn btn-primary btn-lg mt-1 btn-block p-lg-4"
+                            onclick="showLoadingSpinner(this,event,100,'cevsen')"
+                            th:disabled="${allCounts.cevsen == 0}">100 Cevşen<br>Okudum
+                    </button>
                 </div>
             </form>
         </div>
     </div>
 
-</div>
 
-<div th:replace="~{fragments/footer :: footer}"></div>
+    <div th:replace="~{fragments/footer :: footer}"></div>
+    <div class="alert alert-primary mt-lg-3" role="alert" id="lastActiveSurah"></div>
+</div>
 
 <script th:src="@{/webjars/bootstrap/5.2.3/js/bootstrap.min.js}"></script>
 <script th:src="@{/webjars/jquery/3.6.4/jquery.min.js}"></script>
