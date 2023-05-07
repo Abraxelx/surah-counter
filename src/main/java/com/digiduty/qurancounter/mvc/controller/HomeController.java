@@ -55,6 +55,20 @@ public class HomeController {
 
         return "index";
     }
+    @GetMapping("/privacy-policy")
+    public String privacyPolicyPageViewer() {
+        return "privacy-policy";
+    }
+
+    @GetMapping("/cookie-policy")
+    public String cookiePolicyPageViewer() {
+        return "cookie-policy";
+    }
+
+    @GetMapping("/terms-of-use")
+    public String termsOfUsePageViewer() {
+        return "terms-of-use";
+    }
 
     @PostMapping("/updateSurahCount")
     public String updateSurahs(@ModelAttribute(value = "surahForm") SurahForm surahForm) {
