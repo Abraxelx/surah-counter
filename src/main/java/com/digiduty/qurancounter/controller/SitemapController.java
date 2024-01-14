@@ -10,7 +10,7 @@ import java.io.IOException;
 @Controller
 public class SitemapController {
 
-    private CountService service;
+    private final CountService service;
 
     public SitemapController(CountService service) {
         this.service = service;

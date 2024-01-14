@@ -3,12 +3,15 @@ package com.digiduty.qurancounter.service.impl;
 import com.digiduty.qurancounter.constants.Constants;
 import com.digiduty.qurancounter.model.*;
 import com.digiduty.qurancounter.service.CountService;
+import com.digiduty.qurancounter.service.FirebaseInitializer;
 import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.*;
 import com.google.firebase.cloud.FirestoreClient;
 import org.apache.commons.io.IOUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.PostConstruct;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
@@ -16,6 +19,20 @@ import java.util.concurrent.ExecutionException;
 
 @Service
 public class CountServiceImpl implements CountService {
+
+    private static volatile byte[] cachedContent = null;
+
+    @Autowired
+    public CountServiceImpl(FirebaseInitializer initializer) {
+    }
+
+    @PostConstruct
+    private void init() throws IOException {
+        try (InputStream inputStream = getClass().getResourceAsStream("/static/xml/sitemap.xml")) {
+            assert inputStream != null;
+            cachedContent = IOUtils.toByteArray(inputStream);
+        }
+    }
 
 
     public Counts getAllCounts() throws ExecutionException, InterruptedException {
@@ -36,45 +53,63 @@ public class CountServiceImpl implements CountService {
 
 
     public String updateCounts(SurahsEnum surahsEnum, int decreaseValue) throws ExecutionException, InterruptedException {
-        Counts currentCountValues = getAllCounts();
-        ReverseCounter reverseCounter = getAllReverseCounts();
-        if (surahsEnum.equals(SurahsEnum.CEVSEN)) {
-            int minus = currentCountValues.getCevsen() - decreaseValue;
-            if (minus < 0) {
-                return Constants.CEVSEN_OVERFLOW_MESSAGE + currentCountValues;
-            }
-            currentCountValues.setCevsen(minus);
-            reverseCounter.setReverseCevsen(reverseCounter.getReverseCevsen() + decreaseValue);
-        } else if (surahsEnum.equals(SurahsEnum.FETIH)) {
-            int minus = currentCountValues.getFetih() - decreaseValue;
-            if (minus < 0) {
-                return Constants.FETIH_OVERFLOW_MESSAGE + currentCountValues;
-            }
-            currentCountValues.setFetih(currentCountValues.getFetih() - decreaseValue);
-            reverseCounter.setReverseFetih(reverseCounter.getReverseFetih() + decreaseValue);
-        } else {
-            int minus = currentCountValues.getYasin() - decreaseValue;
-            if (minus < 0) {
-                return Constants.YASIN_OVERFLOW_MESSAGE + currentCountValues;
-            }
-            currentCountValues.setYasin(currentCountValues.getYasin() - decreaseValue);
-            reverseCounter.setReverseYasin(reverseCounter.getReverseYasin() + decreaseValue);
-        }
-
         Firestore firestore = FirestoreClient.getFirestore();
-        ApiFuture<WriteResult> collectionsApiFuture = firestore
-                .collection(Constants.SURAH_COUNTER_DB)
-                .document(Constants.COUNTS_TABLE_NAME)
-                .set(currentCountValues);
-        firestore.collection(Constants.REVERSE_COUNTER_DB)
-                .document(Constants.REVERSE_COUNTER_DB)
-                .set(reverseCounter);
-        return "Updated Successfully. " + collectionsApiFuture.get().getUpdateTime();
+
+        ApiFuture<String> transactionResult = firestore.runTransaction(transaction -> {
+            DocumentReference countsRef = firestore.collection(Constants.SURAH_COUNTER_DB).document(Constants.COUNTS_TABLE_NAME);
+            DocumentReference reverseCounterRef = firestore.collection(Constants.REVERSE_COUNTER_DB).document(Constants.REVERSE_COUNTER_DB);
+
+            Counts currentCountValues = transaction.get(countsRef).get().toObject(Counts.class);
+            ReverseCounter reverseCounter = transaction.get(reverseCounterRef).get().toObject(ReverseCounter.class);
+
+            int newValue;
+            switch (surahsEnum) {
+                case CEVSEN:
+                    assert currentCountValues != null;
+                    newValue = currentCountValues.getCevsen() - decreaseValue;
+                    if (newValue < 0) {
+                        throw new IllegalArgumentException(Constants.CEVSEN_OVERFLOW_MESSAGE + currentCountValues);
+                    }
+                    currentCountValues.setCevsen(newValue);
+                    assert reverseCounter != null;
+                    reverseCounter.setReverseCevsen(reverseCounter.getReverseCevsen() + decreaseValue);
+                    break;
+                case FETIH:
+                    assert currentCountValues != null;
+                    newValue = currentCountValues.getFetih() - decreaseValue;
+                    if (newValue < 0) {
+                        throw new IllegalArgumentException(Constants.FETIH_OVERFLOW_MESSAGE + currentCountValues);
+                    }
+                    currentCountValues.setFetih(newValue);
+                    assert reverseCounter != null;
+                    reverseCounter.setReverseFetih(reverseCounter.getReverseFetih() + decreaseValue);
+                    break;
+                case YASIN:
+                    assert currentCountValues != null;
+                    newValue = currentCountValues.getYasin() - decreaseValue;
+                    if (newValue < 0) {
+                        throw new IllegalArgumentException(Constants.YASIN_OVERFLOW_MESSAGE + currentCountValues);
+                    }
+                    currentCountValues.setYasin(newValue);
+                    assert reverseCounter != null;
+                    reverseCounter.setReverseYasin(reverseCounter.getReverseYasin() + decreaseValue);
+                    break;
+            }
+
+            transaction.set(countsRef, currentCountValues);
+            transaction.set(reverseCounterRef, reverseCounter);
+            return "Updated Successfully.";
+        });
+
+        return transactionResult.get();
     }
 
     public Progress progressBarValueCalculator() throws ExecutionException, InterruptedException {
         MaxCounts maxCounts = getAllMaxCounts();
         ReverseCounter currentCounts = getAllReverseCounts();
+        if (maxCounts == null || currentCounts == null) {
+            return new Progress();
+        }
 
         Progress progress = new Progress();
 
@@ -85,6 +120,7 @@ public class CountServiceImpl implements CountService {
     }
 
     public <T> T fillModel(String collectionName, Class<T> clazz) throws ExecutionException, InterruptedException {
+
         Firestore dbFirestore = FirestoreClient.getFirestore();
         ApiFuture<QuerySnapshot> query = dbFirestore.collection(collectionName).get();
         QuerySnapshot querySnapshot = query.get();
@@ -98,9 +134,7 @@ public class CountServiceImpl implements CountService {
     }
 
     @Override
-    public byte[] getSiteMap() throws IOException {
-        InputStream inputStream = getClass().getResourceAsStream("/static/xml/sitemap.xml");
-        return IOUtils.toByteArray(inputStream);
+    public byte[] getSiteMap() {
+        return cachedContent;
     }
-
 }

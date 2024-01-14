@@ -13,15 +13,18 @@ import java.io.IOException;
 public class FirebaseInitializer {
     @PostConstruct
     public void initialize() throws IOException {
+        try {
+            FileInputStream serviceAccount =
+                    new FileInputStream("./serviceAccount.json");
 
-        FileInputStream serviceAccount =
-                new FileInputStream("./serviceAccount.json");
+            FirebaseOptions options = FirebaseOptions.builder()
+                    .setCredentials(GoogleCredentials.fromStream(serviceAccount))
+                    .setDatabaseUrl("https://quran-counter-java.firebaseio.com")
+                    .build();
 
-        FirebaseOptions options = FirebaseOptions.builder()
-                .setCredentials(GoogleCredentials.fromStream(serviceAccount))
-                .setDatabaseUrl("https://quran-counter-java.firebaseio.com")
-                .build();
-
-        FirebaseApp.initializeApp(options);
+            FirebaseApp.initializeApp(options);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
     }
 }

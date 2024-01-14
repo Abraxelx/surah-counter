@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.concurrent.ExecutionException;
 
-@RestController
-@RequestMapping("/api")
+//@RestController
+//@RequestMapping("/api")
 public class CountController {
     private final CountService countService;
 
@@ -17,17 +17,17 @@ public class CountController {
         this.countService = countService;
     }
 
-    @PutMapping("/updateCount")
+    //@PutMapping("/updateCount")
     public String updateCount(@RequestParam SurahsEnum surahName, @RequestParam int decreaseVal) throws ExecutionException, InterruptedException {
         return countService.updateCounts(surahName, decreaseVal);
     }
 
-    @GetMapping("/getAll")
+    //@GetMapping("/getAll")
     public Counts getAllCounts() throws ExecutionException, InterruptedException {
         return countService.getAllCounts();
     }
 
-    @GetMapping("/getMaxCounts")
+   // @GetMapping("/getMaxCounts")
     public MaxCounts getAllMaxCounts() throws ExecutionException, InterruptedException {
         return countService.getAllMaxCounts();
     }
