@@ -12,13 +12,13 @@ Bu proje, 1 Milyon Yasin Suresi, 1 Milyon Fetih Suresi ve 100 Bin Cevşen-ul Keb
 - **100 Bin Cevşen-ul Kebir:** Cevşen-ul Kebir, peygamberimiz tarafından öğretilmiş güçlü bir duadır. 100 bin adet Cevşen-ul Kebir zikri ile manevi birlikteliğimizi pekiştirmeyi hedefliyoruz.
 
 ## 🚀 Katılım
-Projemize katılmak için [buraya tıklayın](#). Her okunan sure veya dua, toplam sayıma eklenir ve bu kutsal yolculuğun bir parçası olursunuz.
+Projemize katılmak için [buraya tıklayın](https://kuranlayasiyorum.com/). Her okunan sure veya dua, toplam sayıma eklenir ve bu kutsal yolculuğun bir parçası olursunuz.
 
 ## 🤝 Topluluk ve Katkıda Bulunma
 Bu proje, topluluk tarafından desteklenmektedir ve her türlü katkıya açıktır. İster surelerinizi saymak için katılın, ister projenin geliştirilmesine yardımcı olun. Her türlü katkı, bu kutsal yolculuğun daha da anlamlı hale gelmesine yardımcı olacaktır.
 
 ## 📬 İletişim
-Projeye dair sorularınız, önerileriniz veya katkılarınız için bizimle [iletişime geçin](mailto:contact@example.com).
+Projeye dair sorularınız, önerileriniz veya katkılarınız için bizimle [iletişime geçin](mailto:info@kuranlayasiyorum.com).
 
 ## 📃 Lisans
 Bu proje [MIT Lisansı](https://opensource.org/licenses/MIT) altında lisanslanmıştır.
